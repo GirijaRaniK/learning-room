@@ -591,7 +591,7 @@ section {
   color: #ffffff;
   padding: 7px 24px;
   border-radius: 18px;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -792,18 +792,125 @@ section {
     grid-column: 2;
   }
 
-  /* CONTACT */
+  /* =========================================================
+   CONTACT
+========================================================= */
+
+  .contact-section {
+    padding: 60px 0;
+    background: #f7fbff;
+  }
+
+  .contact-title {
+    margin-bottom: 35px;
+  }
 
   .contact-grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
   }
 
   .contact-form-wrapper {
-    padding-left: 0;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(9, 45, 92, 0.08);
+    border: 1px solid #e2edf6;
   }
 
-  .contact-details {
-    padding: 5px 0;
+  .contact-form {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #092d5c;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Textboxes */
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid #cbdbea;
+    border-radius: 11px;
+    background: #fafdff;
+    color: #16375c;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.25s ease;
+  }
+
+  /* Placeholder */
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #9aabba;
+  }
+
+  /* Focus */
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    background: #ffffff;
+    border-color: #0cb4dc;
+    box-shadow: 0 0 0 3px rgba(12, 180, 220, 0.12);
+  }
+
+  /* Message box */
+
+  .contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  /* Submit button */
+
+  .submit-btn {
+    border: none;
+    cursor: pointer;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: #0cb4dc;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s ease;
+  }
+
+  .submit-btn:hover {
+    background: #079abd;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile */
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .contact-form-wrapper {
+      padding: 22px;
+    }
+
+    .contact-details {
+      padding: 5px 0;
+    }
   }
 
   /* FOOTER */
