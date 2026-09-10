@@ -29,372 +29,375 @@
     ========================== -->
 
     <div id="navbar"></div>
-
-    <!-- =====================================================
+    <main>
+      <!-- =====================================================
        PAGE HERO
   ====================================================== -->
 
-    <section class="courses-hero">
-      <div class="container courses-hero-content">
-        <div class="courses-hero-text">
-          <span class="small-heading">LEARN SOMETHING NEW</span>
+      <section class="courses-hero">
+        <div class="container courses-hero-content">
+          <div class="courses-hero-text">
+            <span class="small-heading">LEARN SOMETHING NEW</span>
 
-          <h1>
-            Explore Our
-            <span>Courses</span>
-          </h1>
+            <h1>
+              Explore Our
+              <span>Courses</span>
+            </h1>
 
-          <p>
-            Discover fun, engaging and skill-building courses designed to help
-            children learn with confidence and curiosity.
-          </p>
+            <p>
+              Discover fun, engaging and skill-building courses designed to help
+              children learn with confidence and curiosity.
+            </p>
+          </div>
+
+          <div class="courses-hero-shapes">
+            <div class="hero-circle">🎓</div>
+            <div class="hero-star">⭐</div>
+            <div class="hero-book">📖</div>
+          </div>
         </div>
+      </section>
 
-        <div class="courses-hero-shapes">
-          <div class="hero-circle">🎓</div>
-          <div class="hero-star">⭐</div>
-          <div class="hero-book">📖</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
+      <!-- =====================================================
        COURSE CATEGORIES
   ====================================================== -->
 
-    <section class="course-categories">
-      <div class="container">
-        <div class="section-heading">
-          <span>LEARNING FOR EVERY INTEREST</span>
-          <h2>Choose a Category</h2>
-          <p>
-            Find the right learning experience for your child's interests and
-            learning goals.
-          </p>
+      <section class="course-categories">
+        <div class="container">
+          <div class="section-heading">
+            <span>LEARNING FOR EVERY INTEREST</span>
+            <h2>Choose a Category</h2>
+            <p>
+              Find the right learning experience for your child's interests and
+              learning goals.
+            </p>
+          </div>
+
+          <div class="category-grid">
+            <button class="category-card active" data-category="all">
+              <span class="category-icon">🌟</span>
+              <strong>All Courses</strong>
+              <small>Explore everything</small>
+            </button>
+
+            <button class="category-card" data-category="academic">
+              <span class="category-icon">📘</span>
+              <strong>Academic Skills</strong>
+              <small>Build strong basics</small>
+            </button>
+
+            <button class="category-card" data-category="language">
+              <span class="category-icon">🗣️</span>
+              <strong>Languages</strong>
+              <small>Speak & communicate</small>
+            </button>
+
+            <button class="category-card" data-category="creative">
+              <span class="category-icon">🎨</span>
+              <strong>Creative Skills</strong>
+              <small>Create & imagine</small>
+            </button>
+
+            <button class="category-card" data-category="technology">
+              <span class="category-icon">💻</span>
+              <strong>Technology</strong>
+              <small>Discover digital skills</small>
+            </button>
+          </div>
         </div>
+      </section>
 
-        <div class="category-grid">
-          <button class="category-card active" data-category="all">
-            <span class="category-icon">🌟</span>
-            <strong>All Courses</strong>
-            <small>Explore everything</small>
-          </button>
-
-          <button class="category-card" data-category="academic">
-            <span class="category-icon">📘</span>
-            <strong>Academic Skills</strong>
-            <small>Build strong basics</small>
-          </button>
-
-          <button class="category-card" data-category="language">
-            <span class="category-icon">🗣️</span>
-            <strong>Languages</strong>
-            <small>Speak & communicate</small>
-          </button>
-
-          <button class="category-card" data-category="creative">
-            <span class="category-icon">🎨</span>
-            <strong>Creative Skills</strong>
-            <small>Create & imagine</small>
-          </button>
-
-          <button class="category-card" data-category="technology">
-            <span class="category-icon">💻</span>
-            <strong>Technology</strong>
-            <small>Discover digital skills</small>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
+      <!-- =====================================================
        COURSES
   ====================================================== -->
 
-    <section class="courses-section">
-      <div class="container">
-        <div class="courses-top">
-          <div>
-            <span class="section-label">OUR COURSES</span>
-            <h2>Learn. Explore. Grow.</h2>
+      <section class="courses-section">
+        <div class="container">
+          <div class="courses-top">
+            <div>
+              <span class="section-label">OUR COURSES</span>
+              <h2>Learn. Explore. Grow.</h2>
+            </div>
+
+            <div class="course-count">
+              <span id="courseCount">6</span> Courses
+            </div>
           </div>
 
-          <div class="course-count">
-            <span id="courseCount">6</span> Courses
+          <div class="courses-grid" id="coursesGrid">
+            <!-- COURSE 1 -->
+
+            <article class="course-card" data-category="academic">
+              <div class="course-image course-math">
+                <span class="course-badge">Popular</span>
+                <div class="course-emoji">🔢</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Academic Skills</div>
+
+                <h3>Fun with Mathematics</h3>
+
+                <p>
+                  Build confidence in numbers, calculations and problem-solving
+                  through fun activities.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 7–10</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹499</strong>
+                  <a href="course-details.html?id=math" class="course-btn">
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COURSE 2 -->
+
+            <article class="course-card" data-category="language">
+              <div class="course-image course-english">
+                <span class="course-badge new">New</span>
+                <div class="course-emoji">📖</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Languages</div>
+
+                <h3>English Speaking & Writing</h3>
+
+                <p>
+                  Improve vocabulary, speaking confidence and everyday English
+                  communication skills.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 8–12</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹599</strong>
+                  <a href="course-details.html?id=english" class="course-btn">
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COURSE 3 -->
+
+            <article class="course-card" data-category="creative">
+              <div class="course-image course-art">
+                <div class="course-emoji">🎨</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Creative Skills</div>
+
+                <h3>Creative Art & Drawing</h3>
+
+                <p>
+                  Encourage imagination and creativity through drawing,
+                  colouring and fun art projects.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 6–10</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹449</strong>
+                  <a href="course-details.html?id=art" class="course-btn">
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COURSE 4 -->
+
+            <article class="course-card" data-category="technology">
+              <div class="course-image course-coding">
+                <span class="course-badge">Popular</span>
+                <div class="course-emoji">💻</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Technology</div>
+
+                <h3>Introduction to Coding</h3>
+
+                <p>
+                  Introduce children to programming concepts through simple,
+                  enjoyable and interactive activities.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 8–12</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹699</strong>
+                  <a href="course-details.html?id=coding" class="course-btn">
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COURSE 5 -->
+
+            <article class="course-card" data-category="academic">
+              <div class="course-image course-gk">
+                <div class="course-emoji">🌎</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Academic Skills</div>
+
+                <h3>General Knowledge Explorer</h3>
+
+                <p>
+                  Discover fascinating facts about science, nature, space, India
+                  and the world.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 7–12</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹399</strong>
+                  <a href="course-details.html?id=gk" class="course-btn">
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COURSE 6 -->
+
+            <article class="course-card" data-category="language">
+              <div class="course-image course-story">
+                <div class="course-emoji">📚</div>
+              </div>
+
+              <div class="course-content">
+                <div class="course-category">Languages</div>
+
+                <h3>Storytelling & Public Speaking</h3>
+
+                <p>
+                  Help children express ideas confidently through storytelling,
+                  speaking and presentations.
+                </p>
+
+                <div class="course-info">
+                  <span>👦 Ages 8–12</span>
+                  <span>📚 Beginner</span>
+                </div>
+
+                <div class="course-footer">
+                  <strong>₹549</strong>
+                  <a
+                    href="course-details.html?id=storytelling"
+                    class="course-btn"
+                  >
+                    View Course
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
+      </section>
 
-        <div class="courses-grid" id="coursesGrid">
-          <!-- COURSE 1 -->
-
-          <article class="course-card" data-category="academic">
-            <div class="course-image course-math">
-              <span class="course-badge">Popular</span>
-              <div class="course-emoji">🔢</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Academic Skills</div>
-
-              <h3>Fun with Mathematics</h3>
-
-              <p>
-                Build confidence in numbers, calculations and problem-solving
-                through fun activities.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 7–10</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹499</strong>
-                <a href="course-details.html?id=math" class="course-btn">
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- COURSE 2 -->
-
-          <article class="course-card" data-category="language">
-            <div class="course-image course-english">
-              <span class="course-badge new">New</span>
-              <div class="course-emoji">📖</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Languages</div>
-
-              <h3>English Speaking & Writing</h3>
-
-              <p>
-                Improve vocabulary, speaking confidence and everyday English
-                communication skills.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 8–12</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹599</strong>
-                <a href="course-details.html?id=english" class="course-btn">
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- COURSE 3 -->
-
-          <article class="course-card" data-category="creative">
-            <div class="course-image course-art">
-              <div class="course-emoji">🎨</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Creative Skills</div>
-
-              <h3>Creative Art & Drawing</h3>
-
-              <p>
-                Encourage imagination and creativity through drawing, colouring
-                and fun art projects.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 6–10</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹449</strong>
-                <a href="course-details.html?id=art" class="course-btn">
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- COURSE 4 -->
-
-          <article class="course-card" data-category="technology">
-            <div class="course-image course-coding">
-              <span class="course-badge">Popular</span>
-              <div class="course-emoji">💻</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Technology</div>
-
-              <h3>Introduction to Coding</h3>
-
-              <p>
-                Introduce children to programming concepts through simple,
-                enjoyable and interactive activities.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 8–12</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹699</strong>
-                <a href="course-details.html?id=coding" class="course-btn">
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- COURSE 5 -->
-
-          <article class="course-card" data-category="academic">
-            <div class="course-image course-gk">
-              <div class="course-emoji">🌎</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Academic Skills</div>
-
-              <h3>General Knowledge Explorer</h3>
-
-              <p>
-                Discover fascinating facts about science, nature, space, India
-                and the world.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 7–12</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹399</strong>
-                <a href="course-details.html?id=gk" class="course-btn">
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- COURSE 6 -->
-
-          <article class="course-card" data-category="language">
-            <div class="course-image course-story">
-              <div class="course-emoji">📚</div>
-            </div>
-
-            <div class="course-content">
-              <div class="course-category">Languages</div>
-
-              <h3>Storytelling & Public Speaking</h3>
-
-              <p>
-                Help children express ideas confidently through storytelling,
-                speaking and presentations.
-              </p>
-
-              <div class="course-info">
-                <span>👦 Ages 8–12</span>
-                <span>📚 Beginner</span>
-              </div>
-
-              <div class="course-footer">
-                <strong>₹549</strong>
-                <a
-                  href="course-details.html?id=storytelling"
-                  class="course-btn"
-                >
-                  View Course
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
+      <!-- =====================================================
        WHY LEARNINGROOM
   ====================================================== -->
 
-    <section class="why-courses">
-      <div class="container">
-        <div class="section-heading">
-          <span>WHY LEARNINGROOM?</span>
-          <h2>Learning Should Be Fun</h2>
+      <section class="why-courses">
+        <div class="container">
+          <div class="section-heading">
+            <span>WHY LEARNINGROOM?</span>
+            <h2>Learning Should Be Fun</h2>
+          </div>
+
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">🎯</div>
+              <h3>Skill Focused</h3>
+              <p>
+                Courses are designed to develop useful academic, creative and
+                communication skills.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <div class="benefit-icon">😊</div>
+              <h3>Child Friendly</h3>
+              <p>
+                Engaging activities help children enjoy learning instead of
+                simply memorising.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <div class="benefit-icon">🌱</div>
+              <h3>Learn at Your Pace</h3>
+              <p>
+                Children can explore lessons and activities at a comfortable
+                pace.
+              </p>
+            </div>
+
+            <div class="benefit-card">
+              <div class="benefit-icon">💡</div>
+              <h3>Build Confidence</h3>
+              <p>
+                Learning activities encourage curiosity, creativity and
+                confidence.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <div class="benefit-icon">🎯</div>
-            <h3>Skill Focused</h3>
-            <p>
-              Courses are designed to develop useful academic, creative and
-              communication skills.
-            </p>
-          </div>
-
-          <div class="benefit-card">
-            <div class="benefit-icon">😊</div>
-            <h3>Child Friendly</h3>
-            <p>
-              Engaging activities help children enjoy learning instead of simply
-              memorising.
-            </p>
-          </div>
-
-          <div class="benefit-card">
-            <div class="benefit-icon">🌱</div>
-            <h3>Learn at Your Pace</h3>
-            <p>
-              Children can explore lessons and activities at a comfortable pace.
-            </p>
-          </div>
-
-          <div class="benefit-card">
-            <div class="benefit-icon">💡</div>
-            <h3>Build Confidence</h3>
-            <p>
-              Learning activities encourage curiosity, creativity and
-              confidence.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
+      <!-- =====================================================
        CTA
   ====================================================== -->
 
-    <section class="courses-cta">
-      <div class="container">
-        <div class="cta-content">
-          <div>
-            <span>READY TO START?</span>
-            <h2>Let's Make Learning Exciting!</h2>
-            <p>
-              Explore our courses and discover something your child will love.
-            </p>
+      <section class="courses-cta">
+        <div class="container">
+          <div class="cta-content">
+            <div>
+              <span>READY TO START?</span>
+              <h2>Let's Make Learning Exciting!</h2>
+              <p>
+                Explore our courses and discover something your child will love.
+              </p>
+            </div>
+
+            <a href="register.html" class="cta-btn"> Get Started → </a>
           </div>
-
-          <a href="register.html" class="cta-btn"> Get Started → </a>
         </div>
-      </div>
-    </section>
-
+      </section>
+    </main>
     <!-- =========================
          COMMON FOOTER
     ========================== -->
 
     <div id="footer"></div>
+
+    <script src="js/script.js"></script>
 
     <!-- =====================================================
        JAVASCRIPT
