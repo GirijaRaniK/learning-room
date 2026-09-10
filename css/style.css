@@ -970,3 +970,553 @@ section {
     gap: 15px;
   }
 }
+
+/* =========================================================
+   COURSES PAGE
+========================================================= */
+
+.courses-hero {
+  background: #dcebf7;
+  padding: 55px 0;
+  overflow: hidden;
+}
+
+.courses-hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 210px;
+}
+
+.courses-hero-text {
+  max-width: 650px;
+}
+
+.small-heading,
+.section-label {
+  color: #0cb4dc;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.courses-hero h1 {
+  margin: 8px 0 12px;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 44px;
+  line-height: 1.05;
+  color: #092d5c;
+}
+
+.courses-hero h1 span {
+  color: #0cb4dc;
+}
+
+.courses-hero p {
+  max-width: 570px;
+  color: #385879;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.courses-hero-shapes {
+  position: relative;
+  width: 250px;
+  height: 180px;
+}
+
+.hero-circle,
+.hero-star,
+.hero-book {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.hero-circle {
+  width: 130px;
+  height: 130px;
+  right: 35px;
+  top: 15px;
+  background: #ffffff;
+  font-size: 55px;
+  box-shadow: 0 10px 25px rgba(9, 45, 92, 0.1);
+}
+
+.hero-star {
+  width: 55px;
+  height: 55px;
+  left: 20px;
+  top: 5px;
+  background: #ffd95a;
+  font-size: 27px;
+}
+
+.hero-book {
+  width: 65px;
+  height: 65px;
+  right: 5px;
+  bottom: 0;
+  background: #0cb4dc;
+  font-size: 30px;
+}
+
+/* =========================================================
+   CATEGORY SECTION
+========================================================= */
+
+.course-categories {
+  padding: 55px 0 35px;
+  background: #ffffff;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-heading > span {
+  color: #0cb4dc;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.section-heading h2 {
+  margin: 7px 0;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 32px;
+  color: #092d5c;
+}
+
+.section-heading p {
+  margin: 0 auto;
+  max-width: 620px;
+  color: #6b7f94;
+  font-size: 14px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.category-card {
+  border: 1px solid #e1ebf4;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 17px 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.category-card:hover,
+.category-card.active {
+  border-color: #0cb4dc;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(9, 45, 92, 0.08);
+}
+
+.category-card.active {
+  background: #f0fbfe;
+}
+
+.category-icon {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 7px;
+}
+
+.category-card strong {
+  display: block;
+  color: #092d5c;
+  font-size: 13px;
+}
+
+.category-card small {
+  display: block;
+  margin-top: 4px;
+  color: #8496a8;
+  font-size: 11px;
+}
+
+/* =========================================================
+   COURSES
+========================================================= */
+
+.courses-section {
+  padding: 35px 0 65px;
+  background: #f7fbff;
+}
+
+.courses-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.courses-top h2 {
+  margin: 5px 0 0;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 30px;
+  color: #092d5c;
+}
+
+.course-count {
+  color: #71869a;
+  font-size: 13px;
+}
+
+.course-count span {
+  color: #092d5c;
+  font-weight: 700;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e3edf5;
+  border-radius: 17px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(9, 45, 92, 0.1);
+}
+
+.course-image {
+  height: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.course-math {
+  background: #e5f5ff;
+}
+
+.course-english {
+  background: #eaf8ee;
+}
+
+.course-art {
+  background: #fff2df;
+}
+
+.course-coding {
+  background: #eeeaff;
+}
+
+.course-gk {
+  background: #e4f5f2;
+}
+
+.course-story {
+  background: #fff0f2;
+}
+
+.course-emoji {
+  font-size: 65px;
+}
+
+.course-badge {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  background: #0cb4dc;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.course-badge.new {
+  background: #42ad68;
+}
+
+.course-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+
+.course-category {
+  color: #0cb4dc;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.course-content h3 {
+  margin: 7px 0 8px;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 21px;
+  line-height: 1.15;
+  color: #092d5c;
+}
+
+.course-content p {
+  margin: 0;
+  color: #71869a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.course-info {
+  display: flex;
+  gap: 15px;
+  margin: 17px 0;
+  padding-top: 14px;
+  border-top: 1px solid #edf2f6;
+  color: #71869a;
+  font-size: 11px;
+}
+
+.course-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.course-footer strong {
+  color: #092d5c;
+  font-size: 20px;
+}
+
+.course-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #0cb4dc;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.course-btn:hover {
+  background: #079abd;
+}
+
+/* =========================================================
+   WHY LEARNINGROOM
+========================================================= */
+
+.why-courses {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.benefit-card {
+  text-align: center;
+  padding: 25px 18px;
+  border-radius: 16px;
+  background: #f7fbff;
+}
+
+.benefit-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+  margin: 0 0 7px;
+  color: #092d5c;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 19px;
+}
+
+.benefit-card p {
+  margin: 0;
+  color: #71869a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.courses-cta {
+  padding: 45px 0;
+  background: #092d5c;
+}
+
+.cta-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.cta-content > div span {
+  color: #65d6ed;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.cta-content h2 {
+  margin: 5px 0;
+  color: #ffffff;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 30px;
+}
+
+.cta-content p {
+  margin: 0;
+  color: #c4d5e6;
+  font-size: 13px;
+}
+
+.cta-btn {
+  white-space: nowrap;
+  padding: 12px 22px;
+  border-radius: 25px;
+  background: #0cb4dc;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  background: #061f3d;
+  color: #ffffff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.footer-logo {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.footer-brand p {
+  margin: 5px 0 0;
+  color: #a9bdd1;
+  font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 22px;
+}
+
+.footer-links a {
+  color: #c8d8e7;
+  font-size: 12px;
+}
+
+.footer-links a:hover {
+  color: #65d6ed;
+}
+
+.footer-bottom {
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #8fa7bd;
+  font-size: 11px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .courses-hero-content {
+    min-height: auto;
+  }
+
+  .courses-hero h1 {
+    font-size: 36px;
+  }
+
+  .courses-hero-shapes {
+    display: none;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .courses-top {
+    align-items: flex-start;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
