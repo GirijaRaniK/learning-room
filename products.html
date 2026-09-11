@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Products | LearningRoom</title>
+
+    <meta
+      name="description"
+      content="Explore LearningRoom's educational kits, books, activity materials and learning products for children."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/products.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Page Header -->
+    <section class="products-hero">
+      <div class="products-hero-content">
+        <span class="products-badge">Learn • Play • Create</span>
+
+        <h1>Learning Products</h1>
+
+        <p>
+          Fun and thoughtfully designed learning materials that help children
+          explore, create and learn through hands-on activities.
+        </p>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="product-categories">
+      <div class="section-heading">
+        <span>Explore Our Collection</span>
+
+        <h2>Something Fun for Every Curious Mind</h2>
+
+        <p>
+          Choose from engaging learning kits, books, activity materials and
+          creative resources for children.
+        </p>
+      </div>
+
+      <div class="category-grid">
+        <button class="category-card active" data-category="all">
+          <div class="category-icon">🌟</div>
+          <h3>All Products</h3>
+          <p>Explore everything</p>
+        </button>
+
+        <button class="category-card" data-category="kits">
+          <div class="category-icon">🧩</div>
+          <h3>Learning Kits</h3>
+          <p>Learn by doing</p>
+        </button>
+
+        <button class="category-card" data-category="books">
+          <div class="category-icon">📚</div>
+          <h3>Books</h3>
+          <p>Read & discover</p>
+        </button>
+
+        <button class="category-card" data-category="activities">
+          <div class="category-icon">🎨</div>
+          <h3>Activities</h3>
+          <p>Create & explore</p>
+        </button>
+
+        <button class="category-card" data-category="stationery">
+          <div class="category-icon">✏️</div>
+          <h3>Stationery</h3>
+          <p>Learn creatively</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products-section">
+      <div class="products-top">
+        <div>
+          <span class="products-small-title">LearningRoom Store</span>
+          <h2>Our Learning Products</h2>
+        </div>
+
+        <div class="product-count">
+          <span id="productCount">6</span> Products
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Product 1 -->
+        <article class="product-card" data-category="kits">
+          <div class="product-image">
+            <span class="product-label">Popular</span>
+
+            <img
+              src="images/products/learning-kit.jpg"
+              alt="Kids Learning Kit"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>🧩</span>
+              <p>Learning Kit</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Learning Kits</span>
+
+            <h3>Fun Learning Kit</h3>
+
+            <p>
+              A creative activity kit designed to make learning enjoyable
+              through hands-on activities.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹499</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Fun Learning Kit', 499)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card" data-category="books">
+          <div class="product-image">
+            <span class="product-label">New</span>
+
+            <img
+              src="images/products/activity-book.jpg"
+              alt="Children Activity Book"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>📚</span>
+              <p>Activity Book</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Books</span>
+
+            <h3>Creative Activity Book</h3>
+
+            <p>
+              Fun puzzles, colouring activities and brain games created for
+              young learners.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹199</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Creative Activity Book', 199)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card" data-category="activities">
+          <div class="product-image">
+            <img
+              src="images/products/flash-cards.jpg"
+              alt="Educational Flash Cards"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>🃏</span>
+              <p>Flash Cards</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Activities</span>
+
+            <h3>Educational Flash Cards</h3>
+
+            <p>
+              Colourful flash cards that help children improve vocabulary,
+              memory and recognition skills.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹249</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Educational Flash Cards', 249)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card" data-category="stationery">
+          <div class="product-image">
+            <img
+              src="images/products/kids-stationery.jpg"
+              alt="Kids Learning Stationery"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>✏️</span>
+              <p>Kids Stationery</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Stationery</span>
+
+            <h3>Kids Learning Stationery Set</h3>
+
+            <p>
+              A colourful stationery set specially selected for young learners.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹299</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Kids Learning Stationery Set', 299)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 5 -->
+        <article class="product-card" data-category="kits">
+          <div class="product-image">
+            <span class="product-label">Best Seller</span>
+
+            <img
+              src="images/products/science-kit.jpg"
+              alt="Kids Science Kit"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>🔬</span>
+              <p>Science Kit</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Learning Kits</span>
+
+            <h3>Young Scientist Kit</h3>
+
+            <p>
+              Simple and exciting activities that introduce children to the
+              world of science.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹699</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Young Scientist Kit', 699)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 6 -->
+        <article class="product-card" data-category="activities">
+          <div class="product-image">
+            <img
+              src="images/products/craft-kit.jpg"
+              alt="Kids Craft Kit"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.classList.add('image-placeholder');
+              "
+            />
+
+            <div class="placeholder-content">
+              <span>🎨</span>
+              <p>Craft Kit</p>
+            </div>
+          </div>
+
+          <div class="product-content">
+            <span class="product-category">Activities</span>
+
+            <h3>Creative Craft Kit</h3>
+
+            <p>
+              Encourage imagination and creativity with exciting hands-on craft
+              activities.
+            </p>
+
+            <div class="product-bottom">
+              <strong>₹399</strong>
+
+              <button
+                class="add-cart-btn"
+                onclick="addToCart('Creative Craft Kit', 399)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Empty Message -->
+      <div class="no-products" id="noProducts">
+        <div>🔎</div>
+
+        <h3>No products found</h3>
+
+        <p>Try selecting another category.</p>
+      </div>
+    </section>
+
+    <!-- Why LearningRoom -->
+    <section class="why-products">
+      <div class="section-heading">
+        <span>Why LearningRoom?</span>
+
+        <h2>Learning Beyond the Classroom</h2>
+
+        <p>
+          Our products are designed to turn everyday learning into an enjoyable
+          experience.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div>🧠</div>
+          <h3>Build Skills</h3>
+          <p>Encourage problem-solving, creativity and critical thinking.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>🎯</div>
+          <h3>Learn by Doing</h3>
+          <p>Hands-on activities help children understand concepts better.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>😊</div>
+          <h3>Make Learning Fun</h3>
+          <p>Engaging resources make children excited to learn.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>🌱</div>
+          <h3>Grow with Confidence</h3>
+          <p>Give children opportunities to explore and discover.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+  </body>
+</html>

@@ -1911,3 +1911,735 @@ section {
     align-items: flex-start;
   }
 }
+
+/* =========================================
+   LEARNINGROOM PRODUCTS PAGE
+   ========================================= */
+
+.products-hero {
+  background: linear-gradient(135deg, #dcebf7 0%, #eef8fc 55%, #e4f7f5 100%);
+
+  padding: 75px 20px;
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.products-hero::before {
+  content: "✦";
+
+  position: absolute;
+
+  left: 8%;
+
+  top: 25px;
+
+  font-size: 55px;
+
+  color: rgba(13, 183, 219, 0.25);
+}
+
+.products-hero::after {
+  content: "✦";
+
+  position: absolute;
+
+  right: 8%;
+
+  bottom: 20px;
+
+  font-size: 70px;
+
+  color: rgba(23, 60, 114, 0.12);
+}
+
+.products-hero-content {
+  max-width: 800px;
+
+  margin: auto;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.products-badge {
+  display: inline-block;
+
+  background: #ffffff;
+
+  color: #0b9ebd;
+
+  padding: 7px 18px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  margin-bottom: 15px;
+
+  box-shadow: 0 5px 20px rgba(23, 60, 114, 0.08);
+}
+
+.products-hero h1 {
+  font-family: "Baloo 2", cursive;
+
+  font-size: 52px;
+
+  line-height: 1.1;
+
+  color: #173c72;
+
+  margin: 0 0 15px;
+}
+
+.products-hero p {
+  max-width: 680px;
+
+  margin: auto;
+
+  color: #53657b;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+/* =========================================
+   COMMON SECTION
+   ========================================= */
+
+.product-categories,
+.products-section,
+.why-products {
+  width: min(1200px, 94%);
+
+  margin: auto;
+}
+
+.product-categories {
+  padding: 70px 0 35px;
+}
+
+.section-heading {
+  text-align: center;
+
+  max-width: 750px;
+
+  margin: 0 auto 40px;
+}
+
+.section-heading > span {
+  display: inline-block;
+
+  color: #0ca8c9;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 7px;
+}
+
+.section-heading h2 {
+  font-family: "Baloo 2", cursive;
+
+  color: #173c72;
+
+  font-size: 36px;
+
+  line-height: 1.2;
+
+  margin: 0 0 10px;
+}
+
+.section-heading p {
+  color: #66758a;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  margin: 0;
+}
+
+/* =========================================
+   CATEGORY CARDS
+   ========================================= */
+
+.category-grid {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 18px;
+}
+
+.category-card {
+  border: 2px solid #edf2f6;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 20px 12px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  font-family: "Poppins", sans-serif;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #bceaf3;
+
+  box-shadow: 0 10px 25px rgba(23, 60, 114, 0.08);
+}
+
+.category-card.active {
+  background: #173c72;
+
+  border-color: #173c72;
+
+  box-shadow: 0 10px 25px rgba(23, 60, 114, 0.18);
+}
+
+.category-icon {
+  width: 55px;
+
+  height: 55px;
+
+  margin: auto auto 10px;
+
+  border-radius: 50%;
+
+  background: #eaf8fb;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 26px;
+}
+
+.category-card.active .category-icon {
+  background: #ffffff;
+}
+
+.category-card h3 {
+  font-size: 15px;
+
+  color: #173c72;
+
+  margin: 0 0 3px;
+}
+
+.category-card p {
+  margin: 0;
+
+  color: #7c8999;
+
+  font-size: 12px;
+}
+
+.category-card.active h3 {
+  color: #ffffff;
+}
+
+.category-card.active p {
+  color: #c8d9e8;
+}
+
+/* =========================================
+   PRODUCTS
+   ========================================= */
+
+.products-section {
+  padding: 35px 0 80px;
+}
+
+.products-top {
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+.products-small-title {
+  color: #0ca8c9;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+}
+
+.products-top h2 {
+  font-family: "Baloo 2", cursive;
+
+  font-size: 34px;
+
+  color: #173c72;
+
+  margin: 3px 0 0;
+}
+
+.product-count {
+  color: #718095;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+}
+
+.product-count span {
+  color: #173c72;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   PRODUCT GRID
+   ========================================= */
+
+.products-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.product-card {
+  background: #ffffff;
+
+  border: 1px solid #e8eef3;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 20px rgba(23, 60, 114, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  animation: productShow 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow: 0 14px 32px rgba(23, 60, 114, 0.12);
+}
+
+@keyframes productShow {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   PRODUCT IMAGE
+   ========================================= */
+
+.product-image {
+  height: 245px;
+
+  background: #f1f8fb;
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.product-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.product-label {
+  position: absolute;
+
+  top: 13px;
+
+  left: 13px;
+
+  z-index: 2;
+
+  background: #0db7db;
+
+  color: #ffffff;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.placeholder-content {
+  display: none;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #173c72;
+}
+
+.image-placeholder .placeholder-content {
+  display: flex;
+}
+
+.placeholder-content span {
+  font-size: 55px;
+
+  margin-bottom: 5px;
+}
+
+.placeholder-content p {
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+/* =========================================
+   PRODUCT CONTENT
+   ========================================= */
+
+.product-content {
+  padding: 20px;
+}
+
+.product-category {
+  color: #0ba7c7;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.8px;
+}
+
+.product-content h3 {
+  color: #173c72;
+
+  font-family: "Baloo 2", cursive;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+
+  margin: 5px 0 8px;
+}
+
+.product-content p {
+  color: #6d7b8d;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  margin: 0 0 18px;
+
+  min-height: 64px;
+}
+
+.product-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  border-top: 1px solid #edf1f4;
+
+  padding-top: 15px;
+}
+
+.product-bottom strong {
+  color: #173c72;
+
+  font-size: 21px;
+}
+
+.add-cart-btn {
+  border: none;
+
+  background: #0db7db;
+
+  color: #ffffff;
+
+  padding: 9px 16px;
+
+  border-radius: 8px;
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.add-cart-btn:hover {
+  background: #099dbd;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   NO PRODUCTS
+   ========================================= */
+
+.no-products {
+  display: none;
+
+  text-align: center;
+
+  padding: 60px 20px;
+
+  color: #66758a;
+}
+
+.no-products div {
+  font-size: 45px;
+
+  margin-bottom: 10px;
+}
+
+.no-products h3 {
+  color: #173c72;
+
+  margin: 0 0 5px;
+
+  font-family: "Baloo 2", cursive;
+
+  font-size: 24px;
+}
+
+.no-products p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   WHY LEARNINGROOM
+   ========================================= */
+
+.why-products {
+  padding: 70px 0 90px;
+
+  border-top: 1px solid #edf1f4;
+}
+
+.benefits-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.benefit-card {
+  background: #f7fbfd;
+
+  border: 1px solid #e7f0f4;
+
+  border-radius: 18px;
+
+  padding: 25px 18px;
+
+  text-align: center;
+}
+
+.benefit-card > div {
+  width: 55px;
+
+  height: 55px;
+
+  margin: 0 auto 12px;
+
+  background: #e5f7fb;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 26px;
+}
+
+.benefit-card h3 {
+  color: #173c72;
+
+  font-family: "Baloo 2", cursive;
+
+  font-size: 21px;
+
+  margin: 0 0 6px;
+}
+
+.benefit-card p {
+  color: #6d7b8d;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1000px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .products-hero {
+    padding: 55px 18px;
+  }
+
+  .products-hero h1 {
+    font-size: 40px;
+  }
+
+  .products-hero p {
+    font-size: 15px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .product-count {
+    align-self: flex-start;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 430px) {
+  .category-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .category-card {
+    padding: 15px 8px;
+  }
+
+  .category-icon {
+    width: 45px;
+
+    height: 45px;
+
+    font-size: 21px;
+  }
+
+  .category-card h3 {
+    font-size: 13px;
+  }
+
+  .category-card p {
+    font-size: 10px;
+  }
+
+  .product-image {
+    height: 220px;
+  }
+
+  .product-content {
+    padding: 17px;
+  }
+}
