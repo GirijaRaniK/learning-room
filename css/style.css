@@ -2651,3 +2651,36 @@ section {
     padding: 17px;
   }
 }
+
+.product-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-product-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 13px;
+
+  border: 1px solid #173c72;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #173c72;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.view-product-btn:hover {
+  background: #173c72;
+  color: #ffffff;
+}
