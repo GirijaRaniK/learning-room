@@ -14,11 +14,21 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--lr-text);
   background: #fff;
+}
+
+img {
+  max-width: 100%;
 }
 
 button,
@@ -26,12 +36,19 @@ a {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .page-container {
   width: min(1180px, 92%);
   margin: 0 auto;
 }
 
-/* Breadcrumb */
+/* =========================================
+   BREADCRUMB
+   ========================================= */
+
 .breadcrumb-wrap {
   background: #f7fafc;
   border-top: 1px solid #eef3f7;
@@ -39,11 +56,11 @@ a {
 }
 
 .breadcrumb {
-  min-height: 42px;
+  min-height: 48px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 9px;
+  font-size: 13px;
   color: #78879a;
 }
 
@@ -55,29 +72,38 @@ a {
 .breadcrumb a:hover {
   color: var(--lr-cyan);
 }
+
 .breadcrumb strong {
   color: var(--lr-navy);
 }
 
-/* Main product section */
+/* =========================================
+   MAIN PRODUCT SECTION
+   ========================================= */
+
 .product-intro-section {
   background: linear-gradient(100deg, #f8fbfd 0%, #ffffff 45%, #f5fbff 100%);
-  padding: 26px 0 28px;
+  padding: 34px 0 38px;
 }
 
 .product-intro-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 34px;
+  gap: 42px;
   align-items: center;
 }
 
+/* =========================================
+   PRODUCT GALLERY
+   ========================================= */
+
 .main-image-card {
   background: #eef5f9;
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
   aspect-ratio: 1.2 / 1;
   border: 1px solid #e3edf3;
+  box-shadow: 0 10px 28px rgba(23, 60, 114, 0.07);
 }
 
 .main-image-card img {
@@ -89,33 +115,37 @@ a {
 
 .thumbnail-row {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .gallery-thumb {
-  width: 74px;
-  height: 62px;
+  width: 82px;
+  height: 70px;
   padding: 2px;
   background: #fff;
   border: 2px solid #e6edf3;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
   overflow: hidden;
   flex: 0 0 auto;
 }
 
+.gallery-thumb:hover,
 .gallery-thumb.active {
   border-color: var(--lr-blue);
-  box-shadow: 0 0 0 2px rgba(25, 184, 230, 0.08);
+  box-shadow: 0 0 0 3px rgba(25, 184, 230, 0.09);
 }
 
 .gallery-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 7px;
 }
+
+/* =========================================
+   PRODUCT INFORMATION
+   ========================================= */
 
 .product-purchase-panel {
   padding: 5px 4px 0;
@@ -125,31 +155,32 @@ a {
   display: inline-block;
   background: #ffd8e2;
   color: #a82f52;
-  border-radius: 18px;
-  padding: 5px 15px;
-  font-size: 12px;
+  border-radius: 22px;
+  padding: 7px 17px;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .product-purchase-panel h1 {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   font-family: "Baloo 2", cursive;
-  font-size: 39px;
-  line-height: 1;
+  font-size: 46px;
+  line-height: 1.05;
   color: var(--lr-navy);
 }
 
 .product-purchase-panel h2 {
-  margin: 3px 0 12px;
+  margin: 4px 0 14px;
   color: var(--lr-cyan);
   font-family: "Baloo 2", cursive;
-  font-size: 22px;
+  font-size: 27px;
+  line-height: 1.2;
 }
 
 .lead-copy {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.75;
+  font-size: 16px;
+  line-height: 1.8;
   color: #53667d;
   max-width: 560px;
 }
@@ -159,25 +190,27 @@ a {
   align-items: flex-end;
   justify-content: space-between;
   gap: 20px;
-  margin: 18px 0 12px;
+  margin: 21px 0 14px;
 }
 
 .product-price {
-  font-size: 28px;
+  font-size: 33px;
+  line-height: 1.1;
   font-weight: 700;
   color: var(--lr-navy);
 }
 
 .tax-note {
-  font-size: 10px;
+  font-size: 12px;
   color: #6f7c8d;
+  margin-top: 3px;
 }
 
 .stock-status {
   color: #299858;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .purchase-controls {
@@ -187,42 +220,40 @@ a {
 }
 
 .quantity-control {
-  height: 45px;
+  height: 50px;
   display: inline-flex;
   align-items: center;
   border: 1px solid #dce7ee;
-  border-radius: 24px;
+  border-radius: 27px;
   background: #fff;
   overflow: hidden;
 }
 
 .quantity-control button {
-  width: 38px;
+  width: 43px;
   height: 100%;
   border: 0;
   background: transparent;
   color: #5e6f82;
-  font-size: 21px;
-  cursor: pointer;
+  font-size: 22px;
 }
 
 .quantity-control span {
-  min-width: 24px;
+  min-width: 30px;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
 
 .add-cart-main {
   flex: 1;
-  min-height: 45px;
+  min-height: 50px;
   border: 0;
-  border-radius: 24px;
+  border-radius: 27px;
   background: var(--lr-blue);
   color: #fff;
-  cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
   transition: 0.2s ease;
 }
 
@@ -231,39 +262,48 @@ a {
   transform: translateY(-1px);
 }
 
+/* =========================================
+   TRUST STRIP
+   ========================================= */
+
 .trust-strip {
-  margin-top: 18px;
-  padding-top: 14px;
+  margin-top: 21px;
+  padding-top: 16px;
   border-top: 1px solid #e7eef3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 .trust-item {
   display: flex;
-  gap: 8px;
+  gap: 9px;
   align-items: center;
 }
 
 .trust-icon {
-  font-size: 22px;
+  font-size: 25px;
+  flex: 0 0 auto;
 }
 
 .trust-item strong {
   display: block;
   color: #273d57;
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 .trust-item small {
   display: block;
   color: #8491a1;
-  font-size: 8px;
-  line-height: 1.35;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
-/* Benefit strip */
+/* =========================================
+   BENEFIT STRIP
+   ========================================= */
+
 .benefit-strip {
   border-top: 1px solid #eef2f6;
   border-bottom: 1px solid #eef2f6;
@@ -276,24 +316,24 @@ a {
 }
 
 .benefit-item {
-  min-height: 128px;
+  min-height: 145px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 16px;
+  padding: 18px;
 }
 
 .benefit-icon {
-  width: 59px;
-  height: 59px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  margin-bottom: 7px;
+  font-size: 31px;
+  margin-bottom: 8px;
 }
 
 .benefit-item:nth-child(1) .benefit-icon {
@@ -313,32 +353,36 @@ a {
   margin: 0;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  line-height: 1.08;
-  font-size: 16px;
+  line-height: 1.15;
+  font-size: 18px;
 }
 
-/* Generic section styling */
+/* =========================================
+   GENERIC SECTION STYLING
+   ========================================= */
+
 .peek-section {
-  padding: 12px 0 18px;
+  padding: 16px 0 22px;
 }
 
 .peek-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 10px;
+  gap: 12px;
 }
 
 .peek-panel {
   position: relative;
-  min-height: 294px;
-  padding: 20px 22px;
-  border-radius: 10px;
+  min-height: 325px;
+  padding: 25px 26px;
+  border-radius: 13px;
   overflow: hidden;
 }
 
 .blue-panel {
   background: #eff9ff;
 }
+
 .soft-blue-panel {
   background: #f4f8fe;
 }
@@ -346,7 +390,7 @@ a {
 .panel-heading > span,
 .section-heading > span {
   color: #0ca7ce;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.9px;
@@ -354,26 +398,31 @@ a {
 
 .panel-heading h2,
 .section-heading h2 {
-  margin: 2px 0 0;
+  margin: 4px 0 0;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  line-height: 1.1;
-  font-size: 27px;
+  line-height: 1.15;
+  font-size: 31px;
 }
 
 .panel-heading p,
 .section-heading p {
-  margin: 2px 0 0;
+  margin: 5px 0 0;
   color: #6c7b8d;
-  font-size: 11px;
+  font-size: 14px;
+  line-height: 1.65;
 }
+
+/* =========================================
+   INSIDE KIT
+   ========================================= */
 
 .inside-layout {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
-  margin-top: 11px;
+  margin-top: 15px;
 }
 
 .inside-list {
@@ -384,35 +433,35 @@ a {
 
 .inside-list li {
   position: relative;
-  padding-left: 21px;
-  margin: 7px 0;
+  padding-left: 27px;
+  margin: 10px 0;
   color: #4a5e75;
-  font-size: 10px;
-  line-height: 1.35;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .inside-list li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  top: -1px;
-  width: 15px;
-  height: 15px;
+  top: 1px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   background: #37bf66;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .peek-image-card {
-  border-radius: 9px;
+  border-radius: 11px;
   overflow: hidden;
   background: #fff;
-  height: 170px;
+  height: 195px;
 }
 
 .peek-image-card img {
@@ -421,24 +470,28 @@ a {
   object-fit: cover;
 }
 
+/* =========================================
+   HOW IT WORKS
+   ========================================= */
+
 .steps-list {
-  margin-top: 14px;
+  margin-top: 17px;
   display: grid;
-  gap: 10px;
+  gap: 13px;
 }
 
 .step-item {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
+  gap: 11px;
 }
 
 .step-number {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -449,12 +502,15 @@ a {
 .step-pink {
   background: #ef4c79;
 }
+
 .step-blue {
   background: #22aee8;
 }
+
 .step-green {
   background: #32be7c;
 }
+
 .step-yellow {
   background: #f0c938;
 }
@@ -463,37 +519,42 @@ a {
   margin: 0;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  font-size: 15px;
+  font-size: 18px;
+  line-height: 1.2;
 }
 
 .step-item p {
-  margin: 0;
-  font-size: 10px;
+  margin: 2px 0 0;
+  font-size: 13px;
   color: #718094;
-  line-height: 1.3;
+  line-height: 1.45;
 }
 
 .ideas-note {
   position: absolute;
-  right: 16px;
-  top: 20px;
+  right: 20px;
+  top: 22px;
   text-align: center;
   color: #5d6c80;
-  font-size: 11px;
+  font-size: 14px;
+  line-height: 1.25;
   transform: rotate(4deg);
 }
 
 .ideas-note span {
   display: block;
-  font-size: 22px;
-  margin-top: 2px;
+  font-size: 26px;
+  margin-top: 3px;
 }
 
-/* Outcomes */
+/* =========================================
+   OUTCOMES
+   ========================================= */
+
 .outcomes-section {
   position: relative;
   background: var(--lr-soft-yellow);
-  padding: 24px 0 25px;
+  padding: 32px 0 34px;
 }
 
 .outcomes-section .page-container {
@@ -503,15 +564,16 @@ a {
 .section-heading.left-align {
   text-align: left;
 }
+
 .section-heading.compact {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .outcomes-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  max-width: 850px;
+  gap: 16px;
+  max-width: 890px;
 }
 
 .outcome-card {
@@ -519,115 +581,122 @@ a {
 }
 
 .outcome-icon {
-  width: 47px;
-  height: 47px;
-  margin-bottom: 5px;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 7px;
   border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 27px;
 }
 
 .outcome-card:nth-child(1) .outcome-icon {
   background: #ffe8a8;
 }
+
 .outcome-card:nth-child(2) .outcome-icon {
   background: #f9d2e7;
 }
+
 .outcome-card:nth-child(3) .outcome-icon {
   background: #d9f4fe;
 }
+
 .outcome-card:nth-child(4) .outcome-icon {
   background: #ffd6dc;
 }
+
 .outcome-card:nth-child(5) .outcome-icon {
   background: #ffe69f;
 }
 
 .outcome-card h3 {
-  margin: 0 0 3px;
+  margin: 0 0 4px;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  font-size: 14px;
+  font-size: 17px;
+  line-height: 1.2;
 }
 
 .outcome-card p {
-  max-width: 145px;
+  max-width: 155px;
   margin: auto;
   color: #64758a;
-  font-size: 9px;
-  line-height: 1.35;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .quote-note {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 155px;
-  padding: 16px 16px 12px;
+  right: 8px;
+  bottom: 12px;
+  width: 170px;
+  padding: 18px 17px 14px;
   background: #ffe892;
   border-radius: 35% 18% 34% 18%;
   transform: rotate(-3deg);
   text-align: center;
   color: #5c533d;
   font-family: "Baloo 2", cursive;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.15;
 }
 
 .quote-note span {
-  font-size: 19px;
+  font-size: 22px;
 }
 
-/* Social proof */
+/* =========================================
+   SOCIAL PROOF / FAQ
+   ========================================= */
+
 .social-proof-section {
-  padding: 25px 0 18px;
+  padding: 32px 0 24px;
 }
 
 .social-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 25px;
+  gap: 28px;
 }
 
 .testimonial-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 14px;
 }
 
 .testimonial-card {
   border: 1px solid #e6edf3;
-  border-radius: 8px;
+  border-radius: 11px;
   background: #fff;
-  padding: 13px;
+  padding: 17px;
   box-shadow: 0 4px 14px rgba(25, 60, 114, 0.05);
 }
 
 .testimonial-top {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 
 .avatar {
-  width: 38px;
-  height: 38px;
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--lr-navy);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .avatar-pink {
   background: #ffdfe8;
 }
+
 .avatar-blue {
   background: #dff1fb;
 }
@@ -636,25 +705,27 @@ a {
 .testimonial-top small {
   display: block;
 }
+
 .testimonial-top strong {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--lr-navy);
 }
+
 .testimonial-top small {
-  font-size: 8px;
+  font-size: 11px;
   color: #8a96a5;
 }
 
 .testimonial-card p {
-  margin: 9px 0;
+  margin: 11px 0;
   color: #64758a;
-  font-size: 9px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .stars {
   color: #f4be13;
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 1px;
 }
 
@@ -668,23 +739,23 @@ a {
 
 .faq-question {
   width: 100%;
-  padding: 11px 2px;
+  padding: 14px 2px;
   background: transparent;
   border: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  cursor: pointer;
   color: #334c69;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .faq-question b {
-  font-size: 17px;
+  font-size: 21px;
   font-weight: 400;
   color: #4a627c;
+  transition: transform 0.2s ease;
 }
 
 .faq-answer {
@@ -695,60 +766,65 @@ a {
 
 .faq-answer p {
   margin: 0;
-  padding: 0 24px 11px 2px;
+  padding: 0 25px 14px 2px;
   color: #7a8797;
-  font-size: 9px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .faq-item.open .faq-answer {
-  max-height: 120px;
+  max-height: 150px;
 }
+
 .faq-item.open .faq-question b {
   transform: rotate(45deg);
 }
 
-/* Related products */
+/* =========================================
+   RELATED PRODUCTS
+   ========================================= */
+
 .related-section {
   background: #fff4fa;
-  padding: 23px 0 32px;
+  padding: 30px 0 38px;
 }
 
 .related-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 17px;
 }
 
 .related-card,
 .more-products-card {
   background: #fff;
   border: 1px solid #ece8ed;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
 }
 
 .related-card img {
   width: 100%;
-  height: 135px;
+  height: 155px;
   display: block;
   object-fit: cover;
 }
 
 .related-body {
-  padding: 10px;
+  padding: 13px;
   position: relative;
 }
 
 .related-body h3 {
-  margin: 0 0 7px;
+  margin: 0 0 8px;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  font-size: 14px;
+  font-size: 17px;
+  line-height: 1.2;
 }
 
 .related-body strong {
-  font-size: 12px;
+  font-size: 14px;
   color: #324b68;
 }
 
@@ -757,9 +833,10 @@ a {
   color: #fff;
   background: var(--lr-blue);
   text-decoration: none;
-  padding: 7px 11px;
-  border-radius: 16px;
-  font-size: 9px;
+  padding: 8px 12px;
+  border-radius: 18px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .more-products-card {
@@ -769,30 +846,35 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 22px;
+  padding: 24px;
 }
 
 .more-icon {
-  font-size: 35px;
-  margin-bottom: 8px;
+  font-size: 40px;
+  margin-bottom: 9px;
 }
 
 .more-products-card h3 {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: var(--lr-navy);
   font-family: "Baloo 2", cursive;
-  font-size: 16px;
-  line-height: 1.2;
+  font-size: 19px;
+  line-height: 1.25;
 }
 
 .more-products-card a {
   background: var(--lr-blue);
   color: #fff;
   text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 17px;
-  font-size: 9px;
+  padding: 9px 16px;
+  border-radius: 18px;
+  font-size: 11px;
+  font-weight: 600;
 }
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 
 @media (max-width: 1050px) {
   .product-intro-grid,
@@ -800,16 +882,19 @@ a {
   .social-grid {
     grid-template-columns: 1fr;
   }
+
   .product-intro-grid {
     max-width: 850px;
   }
+
   .outcomes-grid {
     grid-template-columns: repeat(3, 1fr);
     max-width: none;
   }
+
   .quote-note {
     position: static;
-    margin: 22px auto 0;
+    margin: 24px auto 0;
   }
 }
 
@@ -817,42 +902,132 @@ a {
   .benefit-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .related-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .trust-strip {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .product-purchase-panel h1 {
-    font-size: 34px;
+  body {
+    font-size: 14px;
   }
+
+  .product-intro-section {
+    padding: 25px 0 30px;
+  }
+
+  .product-purchase-panel h1 {
+    font-size: 39px;
+  }
+
+  .product-purchase-panel h2 {
+    font-size: 24px;
+  }
+
+  .lead-copy {
+    font-size: 15px;
+  }
+
+  .product-price {
+    font-size: 30px;
+  }
+
   .thumbnail-row {
     overflow-x: auto;
     padding-bottom: 4px;
   }
+
   .purchase-controls {
     flex-direction: column;
     align-items: stretch;
   }
+
   .quantity-control {
     justify-content: center;
   }
+
   .benefit-grid,
   .outcomes-grid,
   .testimonial-grid,
   .related-grid {
     grid-template-columns: 1fr;
   }
+
   .inside-layout {
     grid-template-columns: 1fr;
   }
+
   .peek-image-card {
-    height: 210px;
+    height: 220px;
   }
+
+  .peek-panel {
+    padding: 22px 20px;
+  }
+
+  .panel-heading h2,
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .inside-list li {
+    font-size: 13px;
+  }
+
   .quote-note {
-    width: 180px;
+    width: 190px;
+  }
+
+  .faq-question {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  .page-container {
+    width: 94%;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+    min-height: 43px;
+  }
+
+  .age-badge {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+
+  .product-purchase-panel h1 {
+    font-size: 34px;
+  }
+
+  .product-purchase-panel h2 {
+    font-size: 22px;
+  }
+
+  .lead-copy {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 28px;
+  }
+
+  .benefit-item {
+    min-height: 135px;
+  }
+
+  .benefit-item h3 {
+    font-size: 17px;
+  }
+
+  .related-grid {
+    gap: 12px;
   }
 }
