@@ -2116,6 +2116,14 @@ section {
   box-shadow: 0 10px 25px rgba(23, 60, 114, 0.18);
 }
 
+.category-card.active strong {
+  color: #ffffff;
+}
+
+.category-card.active small {
+  color: #b7c1c9;
+}
+
 .category-icon {
   width: 55px;
 
