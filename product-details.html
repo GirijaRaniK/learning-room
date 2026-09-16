@@ -40,14 +40,32 @@
       <section class="product-intro-section">
         <div class="page-container product-intro-grid">
           <div class="product-gallery">
+            <!-- MAIN IMAGE -->
             <div class="main-image-card">
+              <button
+                class="gallery-arrow gallery-prev"
+                type="button"
+                aria-label="Previous image"
+              >
+                &#10094;
+              </button>
+
               <img
                 id="mainProductImage"
                 src="images/products/learning-kit.png"
                 alt="Creative Story Builder learning kit"
               />
+
+              <button
+                class="gallery-arrow gallery-next"
+                type="button"
+                aria-label="Next image"
+              >
+                &#10095;
+              </button>
             </div>
 
+            <!-- THUMBNAILS - NO ARROWS -->
             <div class="thumbnail-row">
               <button
                 class="gallery-thumb active"
@@ -56,9 +74,10 @@
               >
                 <img
                   src="images/products/learning-kit.png"
-                  alt="Creative Story Builder kit"
+                  alt="Learning kit"
                 />
               </button>
+
               <button
                 class="gallery-thumb"
                 type="button"
@@ -66,16 +85,15 @@
               >
                 <img src="images/products/thumbnail1.png" alt="Activity book" />
               </button>
+
               <button
                 class="gallery-thumb"
                 type="button"
                 data-image="images/products/thumbnail2.png"
               >
-                <img
-                  src="images/products/thumbnail2.png"
-                  alt="Story prompt cards"
-                />
+                <img src="images/products/thumbnail2.png" alt="Flash cards" />
               </button>
+
               <button
                 class="gallery-thumb"
                 type="button"
@@ -83,7 +101,7 @@
               >
                 <img
                   src="images/products/thumbnail3.png"
-                  alt="Creative stationery"
+                  alt="Kids stationery"
                 />
               </button>
               <button
@@ -93,7 +111,7 @@
               >
                 <img
                   src="images/products/thumbnail4.png"
-                  alt="Creative activity materials"
+                  alt="Kids stationery"
                 />
               </button>
             </div>
@@ -485,5 +503,47 @@
     <script src="js/script.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/product-details.js"></script>
+    <script>
+      const mainProductImage = document.getElementById("mainProductImage");
+      const thumbnails = document.querySelectorAll(".gallery-thumb");
+      const prevButton = document.querySelector(".gallery-prev");
+      const nextButton = document.querySelector(".gallery-next");
+
+      let currentImageIndex = 0;
+
+      const images = Array.from(thumbnails).map((thumb) => thumb.dataset.image);
+
+      function showImage(index) {
+        if (index < 0) {
+          index = images.length - 1;
+        }
+
+        if (index >= images.length) {
+          index = 0;
+        }
+
+        currentImageIndex = index;
+
+        mainProductImage.src = images[currentImageIndex];
+
+        thumbnails.forEach((thumb, i) => {
+          thumb.classList.toggle("active", i === currentImageIndex);
+        });
+      }
+
+      thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          showImage(index);
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        showImage(currentImageIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        showImage(currentImageIndex + 1);
+      });
+    </script>
   </body>
 </html>
