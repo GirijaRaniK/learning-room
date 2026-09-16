@@ -907,9 +907,9 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .trust-strip {
+  /* .trust-strip {
     grid-template-columns: 1fr;
-  }
+  } */
 }
 
 @media (max-width: 600px) {
