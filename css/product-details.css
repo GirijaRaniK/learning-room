@@ -98,49 +98,107 @@ button {
    ========================================= */
 
 .main-image-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #eef5f9;
   border-radius: 18px;
   overflow: hidden;
-  aspect-ratio: 1.2 / 1;
+  min-height: 450px;
   border: 1px solid #e3edf3;
   box-shadow: 0 10px 28px rgba(23, 60, 114, 0.07);
 }
 
 .main-image-card img {
   width: 100%;
-  height: 100%;
+  height: 450px;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
+
+/* Gallery arrows */
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gallery-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-prev {
+  left: 15px;
+}
+
+.gallery-next {
+  right: 15px;
+}
+
+/* =========================================
+   THUMBNAILS
+   ========================================= */
 
 .thumbnail-row {
   display: flex;
   gap: 12px;
-  margin-top: 14px;
+  margin-top: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .gallery-thumb {
-  width: 82px;
-  height: 70px;
-  padding: 2px;
+  width: 75px;
+  height: 75px;
+  padding: 4px;
+  border: 2px solid transparent;
+  border-radius: 8px;
   background: #fff;
-  border: 2px solid #e6edf3;
-  border-radius: 10px;
+  cursor: pointer;
   overflow: hidden;
   flex: 0 0 auto;
-}
-
-.gallery-thumb:hover,
-.gallery-thumb.active {
-  border-color: var(--lr-blue);
-  box-shadow: 0 0 0 3px rgba(25, 184, 230, 0.09);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .gallery-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 7px;
+  border-radius: 5px;
+}
+
+.gallery-thumb:hover,
+.gallery-thumb.active {
+  border-color: #d4a017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.12);
+}
+
+.gallery-thumb:hover {
+  transform: translateY(-2px);
 }
 
 /* =========================================
@@ -213,6 +271,10 @@ button {
   margin-bottom: 5px;
 }
 
+/* =========================================
+   PURCHASE CONTROLS
+   ========================================= */
+
 .purchase-controls {
   display: flex;
   align-items: center;
@@ -238,6 +300,10 @@ button {
   font-size: 22px;
 }
 
+.quantity-control button:hover {
+  color: var(--lr-cyan);
+}
+
 .quantity-control span {
   min-width: 30px;
   text-align: center;
@@ -254,7 +320,9 @@ button {
   color: #fff;
   font-weight: 600;
   font-size: 15px;
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .add-cart-main:hover {
@@ -270,6 +338,7 @@ button {
   margin-top: 21px;
   padding-top: 16px;
   border-top: 1px solid #e7eef3;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
@@ -317,10 +386,12 @@ button {
 
 .benefit-item {
   min-height: 145px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
   padding: 18px;
 }
@@ -329,9 +400,11 @@ button {
   width: 62px;
   height: 62px;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 31px;
   margin-bottom: 8px;
 }
@@ -339,12 +412,15 @@ button {
 .benefit-item:nth-child(1) .benefit-icon {
   background: #ffdce2;
 }
+
 .benefit-item:nth-child(2) .benefit-icon {
   background: #ffe69c;
 }
+
 .benefit-item:nth-child(3) .benefit-icon {
   background: #cbf2cb;
 }
+
 .benefit-item:nth-child(4) .benefit-icon {
   background: #ead5ff;
 }
@@ -442,17 +518,22 @@ button {
 
 .inside-list li::before {
   content: "✓";
+
   position: absolute;
   left: 0;
   top: 1px;
+
   width: 19px;
   height: 19px;
   border-radius: 50%;
+
   background: #37bf66;
   color: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 12px;
   font-weight: 700;
 }
@@ -490,12 +571,15 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+
   color: #fff;
   font-size: 14px;
   font-weight: 700;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex: 0 0 auto;
 }
 
@@ -534,10 +618,12 @@ button {
   position: absolute;
   right: 20px;
   top: 22px;
+
   text-align: center;
   color: #5d6c80;
   font-size: 14px;
   line-height: 1.25;
+
   transform: rotate(4deg);
 }
 
@@ -584,10 +670,13 @@ button {
   width: 54px;
   height: 54px;
   margin: 0 auto 7px;
+
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 27px;
 }
 
@@ -631,13 +720,18 @@ button {
   position: absolute;
   right: 8px;
   bottom: 12px;
+
   width: 170px;
   padding: 18px 17px 14px;
+
   background: #ffe892;
   border-radius: 35% 18% 34% 18%;
+
   transform: rotate(-3deg);
+
   text-align: center;
   color: #5c533d;
+
   font-family: "Baloo 2", cursive;
   font-size: 18px;
   line-height: 1.15;
@@ -685,9 +779,11 @@ button {
   width: 43px;
   height: 43px;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: var(--lr-navy);
   font-weight: 700;
   font-size: 13px;
@@ -729,6 +825,10 @@ button {
   letter-spacing: 1px;
 }
 
+/* =========================================
+   FAQ
+   ========================================= */
+
 .faq-list {
   border-top: 1px solid #e4ebf0;
 }
@@ -740,12 +840,16 @@ button {
 .faq-question {
   width: 100%;
   padding: 14px 2px;
+
   background: transparent;
   border: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   text-align: left;
+
   color: #334c69;
   font-size: 14px;
   font-weight: 600;
@@ -755,6 +859,7 @@ button {
   font-size: 21px;
   font-weight: 400;
   color: #4a627c;
+
   transition: transform 0.2s ease;
 }
 
@@ -767,6 +872,7 @@ button {
 .faq-answer p {
   margin: 0;
   padding: 0 25px 14px 2px;
+
   color: #7a8797;
   font-size: 13px;
   line-height: 1.6;
@@ -830,21 +936,27 @@ button {
 
 .related-btn {
   float: right;
+
   color: #fff;
   background: var(--lr-blue);
+
   text-decoration: none;
+
   padding: 8px 12px;
   border-radius: 18px;
+
   font-size: 11px;
   font-weight: 600;
 }
 
 .more-products-card {
   background: #eaf8ff;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
   padding: 24px;
 }
@@ -865,15 +977,18 @@ button {
 .more-products-card a {
   background: var(--lr-blue);
   color: #fff;
+
   text-decoration: none;
+
   padding: 9px 16px;
   border-radius: 18px;
+
   font-size: 11px;
   font-weight: 600;
 }
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE — 1050px
    ========================================= */
 
 @media (max-width: 1050px) {
@@ -885,6 +1000,7 @@ button {
 
   .product-intro-grid {
     max-width: 850px;
+    margin: 0 auto;
   }
 
   .outcomes-grid {
@@ -898,6 +1014,10 @@ button {
   }
 }
 
+/* =========================================
+   RESPONSIVE — 800px
+   ========================================= */
+
 @media (max-width: 800px) {
   .benefit-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -907,10 +1027,18 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* .trust-strip {
-    grid-template-columns: 1fr;
-  } */
+  .main-image-card {
+    min-height: 400px;
+  }
+
+  .main-image-card img {
+    height: 400px;
+  }
 }
+
+/* =========================================
+   RESPONSIVE — 600px
+   ========================================= */
 
 @media (max-width: 600px) {
   body {
@@ -937,9 +1065,33 @@ button {
     font-size: 30px;
   }
 
+  .main-image-card {
+    min-height: 340px;
+  }
+
+  .main-image-card img {
+    height: 340px;
+  }
+
+  .gallery-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .gallery-prev {
+    left: 10px;
+  }
+
+  .gallery-next {
+    right: 10px;
+  }
+
   .thumbnail-row {
     overflow-x: auto;
-    padding-bottom: 4px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    padding: 3px 2px 8px;
   }
 
   .purchase-controls {
@@ -951,7 +1103,6 @@ button {
     justify-content: center;
   }
 
-  /* .benefit-grid, */
   .outcomes-grid,
   .testimonial-grid,
   .related-grid {
@@ -988,6 +1139,10 @@ button {
   }
 }
 
+/* =========================================
+   RESPONSIVE — 430px
+   ========================================= */
+
 @media (max-width: 430px) {
   .page-container {
     width: 94%;
@@ -1019,6 +1174,34 @@ button {
     font-size: 28px;
   }
 
+  .main-image-card {
+    min-height: 300px;
+    border-radius: 14px;
+  }
+
+  .main-image-card img {
+    height: 300px;
+  }
+
+  .gallery-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 21px;
+  }
+
+  .gallery-prev {
+    left: 8px;
+  }
+
+  .gallery-next {
+    right: 8px;
+  }
+
+  .gallery-thumb {
+    width: 68px;
+    height: 68px;
+  }
+
   .benefit-item {
     min-height: 135px;
   }
@@ -1030,84 +1213,4 @@ button {
   .related-grid {
     gap: 12px;
   }
-}
-
-.main-image-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.main-image-card img {
-  width: 100%;
-  height: 450px;
-  object-fit: contain;
-  display: block;
-}
-
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.gallery-arrow:hover {
-  background: rgba(0, 0, 0, 0.7);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.gallery-prev {
-  left: 15px;
-}
-
-.gallery-next {
-  right: 15px;
-}
-
-/* THUMBNAILS */
-.thumbnail-row {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.gallery-thumb {
-  width: 75px;
-  height: 75px;
-  padding: 4px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  background: #fff;
-  cursor: pointer;
-}
-
-.gallery-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.gallery-thumb.active {
-  border-color: #d4a017;
 }
