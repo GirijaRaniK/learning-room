@@ -3,7 +3,7 @@
    ========================================================= */
 
 .cart-page-header {
-  padding: 55px 0 45px;
+  padding: 55px 40px 45px;
   background: linear-gradient(135deg, #eefaff 0%, #f8fbff 55%, #f4f1ff 100%);
   border-bottom: 1px solid #e4edf5;
 }
@@ -45,7 +45,7 @@
    ========================================================= */
 
 .cart-section {
-  padding: 55px 0 80px;
+  padding: 55px 40px 80px;
   background: #ffffff;
 }
 
@@ -493,11 +493,11 @@
 
 @media (max-width: 650px) {
   .cart-page-header {
-    padding: 40px 0 35px;
+    padding: 40px 20px 35px;
   }
 
   .cart-section {
-    padding: 40px 0 60px;
+    padding: 40px 20px 60px;
   }
 
   .cart-section-heading {
