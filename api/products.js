@@ -9,6 +9,50 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    const { slug } = req.query;
+
+    // --------------------------------------------------
+    // Get a single product by slug
+    // Example:
+    // /api/products?slug=creative-story-builder
+    // --------------------------------------------------
+    if (slug) {
+      const products = await sql`
+        SELECT
+          id,
+          name,
+          slug,
+          category,
+          description,
+          price,
+          image,
+          stock,
+          recommended_age,
+          active
+        FROM products
+        WHERE slug = ${slug}
+          AND active = true
+        LIMIT 1
+      `;
+
+      if (products.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Product not found",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        product: products[0],
+      });
+    }
+
+    // --------------------------------------------------
+    // Get all active products
+    // Example:
+    // /api/products
+    // --------------------------------------------------
     const products = await sql`
       SELECT
         id,
