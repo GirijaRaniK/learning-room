@@ -44,18 +44,14 @@ module.exports = async function handler(req, res) {
 
     const customer = customers[0];
 
+    // Check password
     let passwordValid = false;
 
-    /*
-     * New bcrypt password
-     */
     if (customer.password_hash && customer.password_hash.startsWith("$2")) {
+      // bcrypt password
       passwordValid = await bcrypt.compare(password, customer.password_hash);
     } else {
-      /*
-       * Existing SHA-256 password
-       * Used only for customers created before bcrypt.
-       */
+      // Existing SHA-256 password
       const sha256Password = crypto
         .createHash("sha256")
         .update(password)
@@ -70,6 +66,32 @@ module.exports = async function handler(req, res) {
         message: "Invalid email or password.",
       });
     }
+
+    // Create secure random session token
+    const sessionToken = crypto.randomBytes(32).toString("hex");
+
+    // Session expires in 7 days
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+    // Save session in database
+    await sql`
+      INSERT INTO sessions (
+        customer_id,
+        session_token,
+        expires_at
+      )
+      VALUES (
+        ${customer.id},
+        ${sessionToken},
+        ${expiresAt}
+      )
+    `;
+
+    // Set HttpOnly session cookie
+    res.setHeader(
+      "Set-Cookie",
+      `learningroom_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`,
+    );
 
     return res.status(200).json({
       success: true,
