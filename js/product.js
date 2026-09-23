@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const noProducts = document.getElementById("noProducts");
   const filterButtons = document.querySelectorAll(".filter-btn");
 
+  // Temporary development customer.
+  // Later this will come from the logged-in customer session.
+  const customerId = 1;
+
   let allProducts = [];
 
   async function loadProducts() {
@@ -101,8 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <button
               type="button"
               class="add-cart-btn"
-              data-name="${product.name}"
-              data-price="${price}"
+              data-product-id="${product.id}"
             >
               Add to Cart
             </button>
@@ -121,14 +124,63 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const addButton = card.querySelector(".add-cart-btn");
 
-      addButton?.addEventListener("click", () => {
-        if (typeof window.addToCart === "function") {
-          window.addToCart(product.name, Number(product.price));
-        } else {
-          console.error("addToCart function is not available.");
-        }
+      addButton?.addEventListener("click", async () => {
+        await addProductToCart(product, addButton);
       });
     });
+  }
+
+  async function addProductToCart(product, button) {
+    if (!product || !product.id) {
+      console.error("Invalid product information.");
+      return;
+    }
+
+    if (Number(product.stock) <= 0) {
+      alert("Sorry, this product is currently out of stock.");
+      return;
+    }
+
+    try {
+      button.disabled = true;
+      button.textContent = "Adding...";
+
+      const response = await fetch("/api/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer_id: customerId,
+          product_id: product.id,
+          quantity: 1,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to add product to cart.");
+      }
+
+      button.textContent = "✓ Added to Cart";
+
+      setTimeout(() => {
+        button.textContent = "Add to Cart";
+        button.disabled = false;
+      }, 1400);
+
+      console.log("Product added to database cart:", data);
+    } catch (error) {
+      console.error("Add to cart error:", error);
+
+      alert(
+        error.message || "Unable to add product to cart. Please try again.",
+      );
+
+      button.textContent = "Add to Cart";
+      button.disabled = false;
+    }
   }
 
   filterButtons.forEach((button) => {
