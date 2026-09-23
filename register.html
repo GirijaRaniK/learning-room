@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Create Account | LearningRoom</title>
+
+    <meta
+      name="description"
+      content="Create your LearningRoom account and start exploring learning products for children."
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .register-page {
+        min-height: calc(100vh - 160px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+
+      .register-card {
+        width: 100%;
+        max-width: 500px;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: 0 10px 35px rgba(23, 60, 114, 0.12);
+      }
+
+      .register-card h1 {
+        margin: 0 0 8px;
+        color: #173c72;
+        text-align: center;
+      }
+
+      .register-subtitle {
+        margin: 0 0 28px;
+        text-align: center;
+        color: #666;
+      }
+
+      .register-form-group {
+        margin-bottom: 18px;
+      }
+
+      .register-form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        color: #173c72;
+      }
+
+      .register-form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 14px;
+        border: 1px solid #d7e0ec;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 15px;
+        outline: none;
+      }
+
+      .register-form-group input:focus {
+        border-color: #19b8e6;
+        box-shadow: 0 0 0 3px rgba(25, 184, 230, 0.12);
+      }
+
+      .register-button {
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        background: #173c72;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .register-button:hover {
+        opacity: 0.94;
+      }
+
+      .register-button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .register-message {
+        margin-top: 18px;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        display: none;
+      }
+
+      .register-message.success {
+        display: block;
+        background: #e9f8ef;
+        color: #18733c;
+      }
+
+      .register-message.error {
+        display: block;
+        background: #fff0f0;
+        color: #b42318;
+      }
+
+      .register-login-link {
+        margin-top: 22px;
+        text-align: center;
+        color: #666;
+      }
+
+      .register-login-link a {
+        color: #173c72;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .register-card {
+          padding: 26px 20px;
+        }
+
+        .register-page {
+          padding: 35px 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <main class="register-page">
+      <section class="register-card">
+        <h1>Create Your Account</h1>
+
+        <p class="register-subtitle">
+          Join LearningRoom and start your learning journey.
+        </p>
+
+        <form id="registerForm">
+          <div class="register-form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="register-form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="register-form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+
+          <div class="register-form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Minimum 6 characters"
+              minlength="6"
+              required
+            />
+          </div>
+
+          <div class="register-form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Re-enter your password"
+              minlength="6"
+              required
+            />
+          </div>
+
+          <button type="submit" class="register-button" id="registerButton">
+            Create Account
+          </button>
+
+          <div id="registerMessage" class="register-message"></div>
+        </form>
+
+        <p class="register-login-link">
+          Already have an account?
+          <a href="login.html">Login</a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("registerForm");
+        const button = document.getElementById("registerButton");
+        const message = document.getElementById("registerMessage");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          message.className = "register-message";
+          message.textContent = "";
+
+          if (password !== confirmPassword) {
+            message.classList.add("error");
+            message.textContent = "Passwords do not match.";
+            return;
+          }
+
+          if (password.length < 6) {
+            message.classList.add("error");
+            message.textContent = "Password must be at least 6 characters.";
+            return;
+          }
+
+          try {
+            button.disabled = true;
+            button.textContent = "Creating Account...";
+
+            const response = await fetch("/api/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                password,
+                phone,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+              throw new Error(data.message || "Unable to create account.");
+            }
+
+            message.classList.add("success");
+            message.textContent =
+              "Account created successfully! You can now login.";
+
+            form.reset();
+
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 1500);
+          } catch (error) {
+            console.error("Registration error:", error);
+
+            message.classList.add("error");
+            message.textContent =
+              error.message || "Unable to create account. Please try again.";
+          } finally {
+            button.disabled = false;
+            button.textContent = "Create Account";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
