@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login | LearningRoom</title>
+
+    <meta name="description" content="Login to your LearningRoom account." />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .login-page {
+        min-height: calc(100vh - 160px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 450px;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: 0 10px 35px rgba(23, 60, 114, 0.12);
+      }
+
+      .login-card h1 {
+        margin: 0 0 8px;
+        color: #173c72;
+        text-align: center;
+      }
+
+      .login-subtitle {
+        margin: 0 0 28px;
+        text-align: center;
+        color: #666;
+      }
+
+      .login-form-group {
+        margin-bottom: 18px;
+      }
+
+      .login-form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        color: #173c72;
+      }
+
+      .login-form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 14px;
+        border: 1px solid #d7e0ec;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 15px;
+        outline: none;
+      }
+
+      .login-form-group input:focus {
+        border-color: #19b8e6;
+        box-shadow: 0 0 0 3px rgba(25, 184, 230, 0.12);
+      }
+
+      .login-button {
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        background: #173c72;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .login-button:hover {
+        opacity: 0.94;
+      }
+
+      .login-button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .login-message {
+        margin-top: 18px;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        display: none;
+      }
+
+      .login-message.success {
+        display: block;
+        background: #e9f8ef;
+        color: #18733c;
+      }
+
+      .login-message.error {
+        display: block;
+        background: #fff0f0;
+        color: #b42318;
+      }
+
+      .login-register-link {
+        margin-top: 22px;
+        text-align: center;
+        color: #666;
+      }
+
+      .login-register-link a {
+        color: #173c72;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .login-card {
+          padding: 26px 20px;
+        }
+
+        .login-page {
+          padding: 35px 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="navbar"></div>
+
+    <main class="login-page">
+      <section class="login-card">
+        <h1>Welcome Back</h1>
+
+        <p class="login-subtitle">Login to your LearningRoom account.</p>
+
+        <form id="loginForm">
+          <div class="login-form-group">
+            <label for="email">Email Address</label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="login-form-group">
+            <label for="password">Password</label>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="login-button" id="loginButton">
+            Login
+          </button>
+
+          <div id="loginMessage" class="login-message"></div>
+        </form>
+
+        <p class="login-register-link">
+          Don't have an account?
+          <a href="register.html">Create an account</a>
+        </p>
+      </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("loginForm");
+        const button = document.getElementById("loginButton");
+        const message = document.getElementById("loginMessage");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const email = document.getElementById("email").value.trim();
+
+          const password = document.getElementById("password").value;
+
+          message.className = "login-message";
+          message.textContent = "";
+
+          try {
+            button.disabled = true;
+            button.textContent = "Logging in...";
+
+            const response = await fetch("/api/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email,
+                password,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+              throw new Error(data.message || "Unable to login.");
+            }
+
+            message.classList.add("success");
+            message.textContent = "Login successful!";
+
+            console.log("Logged-in customer:", data.customer);
+
+            setTimeout(() => {
+              window.location.href = "products.html";
+            }, 1000);
+          } catch (error) {
+            console.error("Login error:", error);
+
+            message.classList.add("error");
+            message.textContent =
+              error.message || "Unable to login. Please try again.";
+          } finally {
+            button.disabled = false;
+            button.textContent = "Login";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

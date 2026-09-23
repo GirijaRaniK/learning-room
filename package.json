@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GirijaRaniK/learning-room#readme",
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0"
+    "@neondatabase/serverless": "^1.1.0",
+    "bcryptjs": "^3.0.3"
   }
 }
