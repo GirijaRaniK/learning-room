@@ -143,64 +143,72 @@ document.addEventListener("DOMContentLoaded", async () => {
   // --------------------------------------------------
   // Add product to cart
   // --------------------------------------------------
-  function addProductToCart() {
+
+  async function addProductToCart() {
     if (!currentProduct) {
       console.error("Product information is not loaded.");
       return;
     }
 
-    const productName = currentProduct.name;
-    const price = Number(currentProduct.price);
-
-    // Prevent adding an out-of-stock product
     if (Number(currentProduct.stock) <= 0) {
       alert("Sorry, this product is currently out of stock.");
       return;
     }
 
-    // Use existing LearningRoom cart function
-    if (typeof window.addToCart === "function") {
-      for (let i = 0; i < quantity; i += 1) {
-        window.addToCart(productName, price);
-      }
-    } else {
-      // Safe fallback
-      const key = "learningroom_cart";
-      let cart = [];
+    /*
+     * Temporary development customer.
+     *
+     * Later this will come from the logged-in customer/session.
+     */
+    const customerId = 1;
 
-      try {
-        cart = JSON.parse(localStorage.getItem(key)) || [];
-      } catch {
-        cart = [];
+    try {
+      if (mainAddCart) {
+        mainAddCart.disabled = true;
+        mainAddCart.innerHTML = "Adding...";
       }
 
-      const existing = cart.find((item) => item.name === productName);
+      const response = await fetch("/api/cart", {
+        method: "POST",
 
-      if (existing) {
-        existing.quantity = (existing.quantity || 1) + quantity;
-      } else {
-        cart.push({
-          id: currentProduct.slug,
-          name: productName,
-          price,
-          quantity,
-          image: currentProduct.image,
-        });
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          customer_id: customerId,
+          product_id: currentProduct.id,
+          quantity: quantity,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to add product to cart.");
       }
 
-      localStorage.setItem(key, JSON.stringify(cart));
-    }
+      if (mainAddCart) {
+        mainAddCart.innerHTML = "✓ Added to Cart";
 
-    if (mainAddCart) {
-      const originalText = mainAddCart.innerHTML;
+        setTimeout(() => {
+          mainAddCart.innerHTML = "Add to Cart";
+          mainAddCart.disabled = false;
+        }, 1400);
+      }
 
-      mainAddCart.innerHTML = "✓ Added to Cart";
-      mainAddCart.disabled = true;
+      console.log("Product added to database cart:", data);
+    } catch (error) {
+      console.error("Add to cart error:", error);
 
-      setTimeout(() => {
-        mainAddCart.innerHTML = originalText;
+      alert(
+        error.message || "Unable to add product to cart. Please try again.",
+      );
+
+      if (mainAddCart) {
+        mainAddCart.innerHTML = "Add to Cart";
         mainAddCart.disabled = false;
-      }, 1400);
+      }
     }
   }
 
