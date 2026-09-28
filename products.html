@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Products | LearningRoom</title>
+
+    <meta
+      name="description"
+      content="Explore LearningRoom's educational kits, books, activity materials and learning products for children."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/products.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Page Header -->
+    <section class="products-hero">
+      <div class="products-hero-content">
+        <span class="products-badge">Learn • Play • Create</span>
+
+        <h1>Learning Products</h1>
+
+        <p>
+          Fun and thoughtfully designed learning materials that help children
+          explore, create and learn through hands-on activities.
+        </p>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="product-categories">
+      <div class="section-heading">
+        <span>Explore Our Collection</span>
+
+        <h2>Something Fun for Every Curious Mind</h2>
+
+        <p>
+          Choose from engaging learning kits, books, activity materials and
+          creative resources for children.
+        </p>
+      </div>
+
+      <div class="category-grid">
+        <button class="category-card active" data-category="all">
+          <div class="category-icon">🌟</div>
+          <h3>All Products</h3>
+          <p>Explore everything</p>
+        </button>
+
+        <button class="category-card" data-category="kits">
+          <div class="category-icon">🧩</div>
+          <h3>Learning Kits</h3>
+          <p>Learn by doing</p>
+        </button>
+
+        <button class="category-card" data-category="books">
+          <div class="category-icon">📚</div>
+          <h3>Books</h3>
+          <p>Read & discover</p>
+        </button>
+
+        <button class="category-card" data-category="activities">
+          <div class="category-icon">🎨</div>
+          <h3>Activities</h3>
+          <p>Create & explore</p>
+        </button>
+
+        <button class="category-card" data-category="stationery">
+          <div class="category-icon">✏️</div>
+          <h3>Stationery</h3>
+          <p>Learn creatively</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products-section">
+      <div class="products-top">
+        <div>
+          <span class="products-small-title">LearningRoom Store</span>
+          <h2>Our Learning Products</h2>
+        </div>
+
+        <div class="product-count">
+          <span id="productCount">6</span> Products
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+
+      <!-- Empty Message -->
+      <div class="no-products" id="noProducts">
+        <div>🔎</div>
+
+        <h3>No products found</h3>
+
+        <p>Try selecting another category.</p>
+      </div>
+    </section>
+
+    <!-- Why LearningRoom -->
+    <section class="why-products">
+      <div class="section-heading">
+        <span>Why LearningRoom?</span>
+
+        <h2>Learning Beyond the Classroom</h2>
+
+        <p>
+          Our products are designed to turn everyday learning into an enjoyable
+          experience.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div>🧠</div>
+          <h3>Build Skills</h3>
+          <p>Encourage problem-solving, creativity and critical thinking.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>🎯</div>
+          <h3>Learn by Doing</h3>
+          <p>Hands-on activities help children understand concepts better.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>😊</div>
+          <h3>Make Learning Fun</h3>
+          <p>Engaging resources make children excited to learn.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div>🌱</div>
+          <h3>Grow with Confidence</h3>
+          <p>Give children opportunities to explore and discover.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product.js"></script>
+  </body>
+</html>

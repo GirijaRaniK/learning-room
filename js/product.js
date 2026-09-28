@@ -1,0 +1,210 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  const productsGrid = document.getElementById("productsGrid");
+  const productCount = document.getElementById("productCount");
+  const noProducts = document.getElementById("noProducts");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+  // Temporary development customer.
+  // Later this will come from the logged-in customer session.
+  const customerId = 1;
+
+  let allProducts = [];
+
+  async function loadProducts() {
+    try {
+      const response = await fetch("/api/products");
+
+      if (!response.ok) {
+        throw new Error(`API request failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data.success || !Array.isArray(data.products)) {
+        throw new Error("Invalid products API response");
+      }
+
+      allProducts = data.products;
+
+      renderProducts(allProducts);
+    } catch (error) {
+      console.error("Products loading error:", error);
+
+      if (productsGrid) {
+        productsGrid.innerHTML = `
+          <div class="products-error">
+            <p>Unable to load products.</p>
+            <button type="button" onclick="location.reload()">
+              Try Again
+            </button>
+          </div>
+        `;
+      }
+
+      if (productCount) {
+        productCount.textContent = "0";
+      }
+
+      if (noProducts) {
+        noProducts.style.display = "none";
+      }
+    }
+  }
+
+  function renderProducts(products) {
+    if (!productsGrid) return;
+
+    productsGrid.innerHTML = "";
+
+    if (productCount) {
+      productCount.textContent = products.length;
+    }
+
+    if (products.length === 0) {
+      if (noProducts) {
+        noProducts.style.display = "block";
+      }
+      return;
+    }
+
+    if (noProducts) {
+      noProducts.style.display = "none";
+    }
+
+    products.forEach((product) => {
+      const card = document.createElement("article");
+
+      card.className = "product-card";
+      card.dataset.category = product.category || "";
+
+      const price = Number(product.price || 0).toFixed(0);
+
+      card.innerHTML = `
+        <div class="product-image-wrap">
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            class="product-image"
+          />
+        </div>
+
+        <div class="product-info">
+          <span class="product-category">
+            ${product.category || "Learning"}
+          </span>
+
+          <h3>${product.name}</h3>
+
+          <p>
+            ${product.description || ""}
+          </p>
+
+          <div class="product-bottom">
+            <span class="product-price">₹${price}</span>
+
+            <button
+              type="button"
+              class="add-cart-btn"
+              data-product-id="${product.id}"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <a
+            href="product-details.html?slug=${encodeURIComponent(product.slug)}"
+            class="view-product"
+          >
+            View Product
+          </a>
+        </div>
+      `;
+
+      productsGrid.appendChild(card);
+
+      const addButton = card.querySelector(".add-cart-btn");
+
+      addButton?.addEventListener("click", async () => {
+        await addProductToCart(product, addButton);
+      });
+    });
+  }
+
+  async function addProductToCart(product, button) {
+    if (!product || !product.id) {
+      console.error("Invalid product information.");
+      return;
+    }
+
+    if (Number(product.stock) <= 0) {
+      alert("Sorry, this product is currently out of stock.");
+      return;
+    }
+
+    try {
+      button.disabled = true;
+      button.textContent = "Adding...";
+
+      const response = await fetch("/api/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer_id: customerId,
+          product_id: product.id,
+          quantity: 1,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to add product to cart.");
+      }
+
+      button.textContent = "✓ Added to Cart";
+
+      setTimeout(() => {
+        button.textContent = "Add to Cart";
+        button.disabled = false;
+      }, 1400);
+
+      console.log("Product added to database cart:", data);
+    } catch (error) {
+      console.error("Add to cart error:", error);
+
+      alert(
+        error.message || "Unable to add product to cart. Please try again.",
+      );
+
+      button.textContent = "Add to Cart";
+      button.disabled = false;
+    }
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      const category = button.dataset.category;
+
+      if (!category || category === "all") {
+        renderProducts(allProducts);
+        return;
+      }
+
+      const filteredProducts = allProducts.filter(
+        (product) => product.category === category,
+      );
+
+      renderProducts(filteredProducts);
+    });
+  });
+
+  await loadProducts();
+});

@@ -1,0 +1,388 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>My Dashboard | LearningRoom</title>
+
+<meta
+  name="description"
+  content="Your LearningRoom customer dashboard."
+/>
+
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+  .dashboard-page {
+    min-height: calc(100vh - 160px);
+    padding: 50px 20px 70px;
+    background: #f7faff;
+  }
+
+  .dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .dashboard-welcome {
+    background: linear-gradient(135deg, #173c72, #19b8e6);
+    color: #ffffff;
+    border-radius: 22px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(23, 60, 114, 0.15);
+  }
+
+  .dashboard-welcome h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+  }
+
+  .dashboard-welcome p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.95;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .dashboard-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 8px 25px rgba(23, 60, 114, 0.08);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(23, 60, 114, 0.12);
+  }
+
+  .dashboard-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #eaf8fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-card h2 {
+    margin: 0 0 8px;
+    color: #173c72;
+    font-size: 20px;
+  }
+
+  .dashboard-card p {
+    margin: 0 0 18px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .dashboard-button {
+    display: inline-block;
+    padding: 10px 17px;
+    border-radius: 9px;
+    background: #173c72;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .dashboard-button:hover {
+    opacity: 0.92;
+  }
+
+  .logout-card {
+    border: 1px solid #f1d6d6;
+  }
+
+  .logout-button {
+    border: none;
+    background: #b42318;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .dashboard-loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: #666;
+  }
+
+  .dashboard-error {
+    max-width: 500px;
+    margin: 80px auto;
+    background: #fff0f0;
+    color: #b42318;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  @media (max-width: 850px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .dashboard-page {
+      padding: 35px 15px 50px;
+    }
+
+    .dashboard-welcome {
+      padding: 26px 22px;
+    }
+
+    .dashboard-welcome h1 {
+      font-size: 26px;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+
+  </head>
+
+  <body>
+    <div id="navbar"></div>
+
+
+<main class="dashboard-page">
+  <div class="dashboard-container">
+
+    <!-- Loading -->
+    <div id="dashboardLoading" class="dashboard-loading">
+      Checking your login...
+    </div>
+
+    <!-- Dashboard content -->
+    <div id="dashboardContent" style="display: none;">
+
+      <section class="dashboard-welcome">
+        <h1>Welcome, <span id="customerName">Customer</span>! 👋</h1>
+
+        <p>
+          Welcome to your LearningRoom dashboard. Manage your learning,
+          products, orders, and account from here.
+        </p>
+      </section>
+
+      <section class="dashboard-grid">
+
+        <!-- Products -->
+        <article class="dashboard-card">
+          <div class="dashboard-icon">🛍️</div>
+
+          <h2>Browse Products</h2>
+
+          <p>
+            Explore LearningRoom learning kits, activity books,
+            stationery, and educational products.
+          </p>
+
+          <a href="products.html" class="dashboard-button">
+            View Products
+          </a>
+        </article>
+
+        <!-- Courses -->
+        <article class="dashboard-card">
+          <div class="dashboard-icon">📚</div>
+
+          <h2>My Courses</h2>
+
+          <p>
+            Access your LearningRoom courses and continue your learning
+            journey.
+          </p>
+
+          <a href="courses.html" class="dashboard-button">
+            View Courses
+          </a>
+        </article>
+
+        <!-- Cart -->
+        <article class="dashboard-card">
+          <div class="dashboard-icon">🛒</div>
+
+          <h2>My Cart</h2>
+
+          <p>
+            View the products you have added to your shopping cart.
+          </p>
+
+          <a href="cart.html" class="dashboard-button">
+            View Cart
+          </a>
+        </article>
+
+        <!-- Orders -->
+        <article class="dashboard-card">
+          <div class="dashboard-icon">📦</div>
+
+          <h2>My Orders</h2>
+
+          <p>
+            View your previous orders and check your order details.
+          </p>
+
+          <a href="orders.html" class="dashboard-button">
+            View Orders
+          </a>
+        </article>
+
+        <!-- Profile -->
+        <article class="dashboard-card">
+          <div class="dashboard-icon">👤</div>
+
+          <h2>My Profile</h2>
+
+          <p>
+            View and manage your LearningRoom account information.
+          </p>
+
+          <a href="#" class="dashboard-button" id="profileButton">
+            My Profile
+          </a>
+        </article>
+
+        <!-- Logout -->
+        <article class="dashboard-card logout-card">
+          <div class="dashboard-icon">🚪</div>
+
+          <h2>Logout</h2>
+
+          <p>
+            Securely sign out of your LearningRoom account.
+          </p>
+
+          <button
+            type="button"
+            class="dashboard-button logout-button"
+            id="logoutButton"
+          >
+            Logout
+          </button>
+        </article>
+
+      </section>
+    </div>
+
+    <!-- Error -->
+    <div
+      id="dashboardError"
+      class="dashboard-error"
+      style="display: none;"
+    >
+      <h2>Session Expired</h2>
+
+      <p>
+        Your login session is no longer valid. Please login again.
+      </p>
+
+      <a href="login.html" class="dashboard-button">
+        Go to Login
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<div id="footer"></div>
+
+<script src="js/script.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const loading = document.getElementById("dashboardLoading");
+    const content = document.getElementById("dashboardContent");
+    const errorBox = document.getElementById("dashboardError");
+    const customerName = document.getElementById("customerName");
+    const logoutButton = document.getElementById("logoutButton");
+
+    try {
+      const response = await fetch("/api/session", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success || !data.customer) {
+        loading.style.display = "none";
+        errorBox.style.display = "block";
+        return;
+      }
+
+      // Display customer name
+      customerName.textContent = data.customer.name || "Customer";
+
+      // Show dashboard
+      loading.style.display = "none";
+      content.style.display = "block";
+
+      console.log("Logged-in customer:", data.customer);
+
+      // Logout
+      logoutButton.addEventListener("click", async () => {
+        try {
+          logoutButton.disabled = true;
+          logoutButton.textContent = "Logging out...";
+
+          const logoutResponse = await fetch("/api/logout", {
+            method: "POST",
+            credentials: "include",
+          });
+
+          const logoutData = await logoutResponse.json();
+
+          if (!logoutResponse.ok || !logoutData.success) {
+            throw new Error(
+              logoutData.message || "Unable to logout."
+            );
+          }
+
+          window.location.href = "login.html";
+        } catch (error) {
+          console.error("Logout error:", error);
+
+          alert(
+            error.message || "Unable to logout. Please try again."
+          );
+
+          logoutButton.disabled = false;
+          logoutButton.textContent = "Logout";
+        }
+      });
+
+    } catch (error) {
+      console.error("Dashboard session error:", error);
+
+      loading.style.display = "none";
+      errorBox.style.display = "block";
+    }
+  });
+</script>
+
+
+  </body>
+</html>
