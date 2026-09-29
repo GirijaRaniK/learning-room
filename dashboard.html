@@ -315,7 +315,6 @@
   document.addEventListener("DOMContentLoaded", async () => {
     const loading = document.getElementById("dashboardLoading");
     const content = document.getElementById("dashboardContent");
-    const errorBox = document.getElementById("dashboardError");
     const customerName = document.getElementById("customerName");
     const logoutButton = document.getElementById("logoutButton");
 
@@ -327,9 +326,12 @@
 
       const data = await response.json();
 
+      /*
+       * No valid session
+       * Redirect user to login page
+       */
       if (!response.ok || !data.success || !data.customer) {
-        loading.style.display = "none";
-        errorBox.style.display = "block";
+        window.location.href = "login.html";
         return;
       }
 
@@ -361,7 +363,9 @@
             );
           }
 
+          // Go to login page after successful logout
           window.location.href = "login.html";
+
         } catch (error) {
           console.error("Logout error:", error);
 
@@ -377,8 +381,8 @@
     } catch (error) {
       console.error("Dashboard session error:", error);
 
-      loading.style.display = "none";
-      errorBox.style.display = "block";
+      // If session check fails, go to login
+      window.location.href = "login.html";
     }
   });
 </script>
