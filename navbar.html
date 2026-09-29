@@ -82,34 +82,3 @@
 
   </div>
 </header>
-
-<script>
-  (async function () {
-    try {
-      const response = await fetch("/api/session", {
-        method: "GET",
-        credentials: "include",
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success && data.customer) {
-        const dashboardLink =
-          document.getElementById("dashboardNavLink");
-
-        const mobileDashboardLink =
-          document.getElementById("mobileDashboardNavLink");
-
-        if (dashboardLink) {
-          dashboardLink.style.display = "inline-block";
-        }
-
-        if (mobileDashboardLink) {
-          mobileDashboardLink.style.display = "block";
-        }
-      }
-    } catch (error) {
-      console.error("Navbar session check error:", error);
-    }
-  })();
-</script>

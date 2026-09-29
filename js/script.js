@@ -32,6 +32,8 @@ function loadNavbar() {
       initializeNavbar();
 
       updateCartCount();
+
+      checkNavbarSession();
     })
     .catch(function (error) {
       console.error("Navbar loading error:", error);
@@ -101,6 +103,44 @@ function initializeNavbar() {
       link.classList.add("active");
     }
   });
+}
+
+/* =========================================================
+   NAVBAR SESSION
+========================================================= */
+
+function checkNavbarSession() {
+  const dashboardLink = document.getElementById("dashboardNavLink");
+
+  const mobileDashboardLink = document.getElementById(
+    "mobileDashboardNavLink"
+  );
+
+  if (!dashboardLink && !mobileDashboardLink) {
+    return;
+  }
+
+  fetch("/api/session", {
+    method: "GET",
+    credentials: "include",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success && data.customer) {
+        if (dashboardLink) {
+          dashboardLink.style.display = "inline-block";
+        }
+
+        if (mobileDashboardLink) {
+          mobileDashboardLink.style.display = "block";
+        }
+      }
+    })
+    .catch(function (error) {
+      console.error("Navbar session check error:", error);
+    });
 }
 
 /* =========================================================
