@@ -112,13 +112,21 @@ function initializeNavbar() {
 function checkNavbarSession() {
   const dashboardLink = document.getElementById("dashboardNavLink");
 
+  const logoutLink = document.getElementById("logoutNavLink");
+
   const mobileDashboardLink = document.getElementById(
     "mobileDashboardNavLink"
   );
 
-  if (!dashboardLink && !mobileDashboardLink) {
-    return;
-  }
+  const mobileLogoutLink = document.getElementById(
+    "mobileLogoutNavLink"
+  );
+
+  const mobileLoginLink = document.getElementById(
+    "mobileLoginNavLink"
+  );
+
+  const userNavLink = document.getElementById("userNavLink");
 
   fetch("/api/session", {
     method: "GET",
@@ -129,12 +137,41 @@ function checkNavbarSession() {
     })
     .then(function (data) {
       if (data.success && data.customer) {
+        /* Logged in */
+
         if (dashboardLink) {
           dashboardLink.style.display = "inline-block";
         }
 
+        if (logoutLink) {
+          logoutLink.style.display = "inline-block";
+        }
+
         if (mobileDashboardLink) {
           mobileDashboardLink.style.display = "block";
+        }
+
+        if (mobileLogoutLink) {
+          mobileLogoutLink.style.display = "block";
+        }
+
+        if (mobileLoginLink) {
+          mobileLoginLink.style.display = "none";
+        }
+
+        if (userNavLink) {
+          userNavLink.href = "dashboard.html";
+          userNavLink.setAttribute("aria-label", "My Dashboard");
+        }
+
+        /* Logout */
+
+        if (logoutLink) {
+          logoutLink.addEventListener("click", handleLogout);
+        }
+
+        if (mobileLogoutLink) {
+          mobileLogoutLink.addEventListener("click", handleLogout);
         }
       }
     })
@@ -143,6 +180,28 @@ function checkNavbarSession() {
     });
 }
 
+async function handleLogout(event) {
+  event.preventDefault();
+
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Unable to logout.");
+    }
+
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Logout error:", error);
+
+    alert(error.message || "Unable to logout. Please try again.");
+  }
+}
 /* =========================================================
    CART COUNT
 ========================================================= */

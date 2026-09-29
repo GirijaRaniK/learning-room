@@ -16,14 +16,13 @@
   <a href="contact.html" data-page="contact.html">Contact Us</a>
 
   <!-- Visible only when logged in -->
-  <a
-    href="dashboard.html"
-    data-page="dashboard.html"
-    id="dashboardNavLink"
-    style="display: none;"
-  >
-    Dashboard
-  </a>
+  <a href="dashboard.html" data-page="dashboard.html" id="dashboardNavLink" style="display: none;">
+  Dashboard
+</a>
+
+<a href="#" id="logoutNavLink" style="display: none;">
+  Logout
+</a>
 </nav>
 
 <!-- Header Icons -->
@@ -41,7 +40,7 @@
     <span class="cart-count" id="cartCount">0</span>
   </a>
 
-  <a href="login.html" class="header-icon" aria-label="Login">
+  <a href="login.html" class="header-icon" id="userNavLink" aria-label="Login">
     <span class="user-icon">●</span>
   </a>
 </div>
@@ -68,15 +67,23 @@
 
 
 <!-- Visible only when logged in -->
-<a
-  href="dashboard.html"
-  id="mobileDashboardNavLink"
-  style="display: none;"
->
-  Dashboard
-</a>
+  <a
+    href="dashboard.html"
+    id="mobileDashboardNavLink"
+    style="display: none;"
+  >
+    Dashboard
+  </a>
 
-<a href="login.html">Login</a>
+  <a
+    href="#"
+    id="mobileLogoutNavLink"
+    style="display: none;"
+  >
+    Logout
+  </a>
+
+<a href="login.html" id="mobileLoginNavLink">Login</a>
 <a href="cart.html">Cart 🛒</a>
 
 
