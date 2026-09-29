@@ -6,44 +6,57 @@
       ><span class="brand-room">room</span>
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="main-nav">
-      <a href="index.html" data-page="index.html">Home</a>
-      <a href="courses.html" data-page="courses.html">Courses</a>
-      <a href="products.html" data-page="products.html">Our Products</a>
-      <a href="about.html" data-page="about.html">About Us</a>
-      <a href="contact.html" data-page="contact.html">Contact Us</a>
-    </nav>
 
-    <!-- Header Icons -->
-    <div class="header-actions">
-      <a href="products.html" class="header-icon" aria-label="Search">
-        <span class="search-icon"></span>
-      </a>
+<!-- Desktop Navigation -->
+<nav class="main-nav">
+  <a href="index.html" data-page="index.html">Home</a>
+  <a href="courses.html" data-page="courses.html">Courses</a>
+  <a href="products.html" data-page="products.html">Our Products</a>
+  <a href="about.html" data-page="about.html">About Us</a>
+  <a href="contact.html" data-page="contact.html">Contact Us</a>
 
-      <a
-        href="cart.html"
-        class="header-icon cart-header-icon"
-        aria-label="Cart"
-      >
-        <span class="cart-symbol">🛒</span>
-        <span class="cart-count" id="cartCount">0</span>
-      </a>
+  <!-- Visible only when logged in -->
+  <a
+    href="dashboard.html"
+    data-page="dashboard.html"
+    id="dashboardNavLink"
+    style="display: none;"
+  >
+    Dashboard
+  </a>
+</nav>
 
-      <a href="login.html" class="header-icon" aria-label="Login">
-        <span class="user-icon">●</span>
-      </a>
-    </div>
+<!-- Header Icons -->
+<div class="header-actions">
+  <a href="products.html" class="header-icon" aria-label="Search">
+    <span class="search-icon"></span>
+  </a>
 
-    <!-- Mobile Menu -->
-    <button
-      class="mobile-menu-btn"
-      id="mobileMenuBtn"
-      type="button"
-      aria-label="Open menu"
-    >
-      ☰
-    </button>
+  <a
+    href="cart.html"
+    class="header-icon cart-header-icon"
+    aria-label="Cart"
+  >
+    <span class="cart-symbol">🛒</span>
+    <span class="cart-count" id="cartCount">0</span>
+  </a>
+
+  <a href="login.html" class="header-icon" aria-label="Login">
+    <span class="user-icon">●</span>
+  </a>
+</div>
+
+<!-- Mobile Menu -->
+<button
+  class="mobile-menu-btn"
+  id="mobileMenuBtn"
+  type="button"
+  aria-label="Open menu"
+>
+  ☰
+</button>
+
+
   </div>
 
   <div class="mobile-nav" id="mobileNav">
@@ -52,7 +65,51 @@
     <a href="courses.html">Courses</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact Us</a>
-    <a href="login.html">Login</a>
-    <a href="cart.html">Cart 🛒</a>
+
+
+<!-- Visible only when logged in -->
+<a
+  href="dashboard.html"
+  id="mobileDashboardNavLink"
+  style="display: none;"
+>
+  Dashboard
+</a>
+
+<a href="login.html">Login</a>
+<a href="cart.html">Cart 🛒</a>
+
+
   </div>
 </header>
+
+<script>
+  (async function () {
+    try {
+      const response = await fetch("/api/session", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success && data.customer) {
+        const dashboardLink =
+          document.getElementById("dashboardNavLink");
+
+        const mobileDashboardLink =
+          document.getElementById("mobileDashboardNavLink");
+
+        if (dashboardLink) {
+          dashboardLink.style.display = "inline-block";
+        }
+
+        if (mobileDashboardLink) {
+          mobileDashboardLink.style.display = "block";
+        }
+      }
+    } catch (error) {
+      console.error("Navbar session check error:", error);
+    }
+  })();
+</script>
