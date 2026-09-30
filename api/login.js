@@ -4,6 +4,15 @@ const bcrypt = require("bcryptjs");
 
 module.exports = async function handler(req, res) {
   try {
+    // TEMPORARY: Check which database the deployed login API is using
+    const dbInfo = await sql`
+      SELECT
+        current_database() AS database_name,
+        current_schema() AS schema_name
+    `;
+
+    console.log("LOGIN DATABASE:", dbInfo[0]);
+
     if (req.method !== "POST") {
       return res.status(405).json({
         success: false,
@@ -47,9 +56,15 @@ module.exports = async function handler(req, res) {
     // Check password
     let passwordValid = false;
 
-    if (customer.password_hash && customer.password_hash.startsWith("$2")) {
+    if (
+      customer.password_hash &&
+      customer.password_hash.startsWith("$2")
+    ) {
       // bcrypt password
-      passwordValid = await bcrypt.compare(password, customer.password_hash);
+      passwordValid = await bcrypt.compare(
+        password,
+        customer.password_hash
+      );
     } else {
       // Existing SHA-256 password
       const sha256Password = crypto
@@ -57,7 +72,8 @@ module.exports = async function handler(req, res) {
         .update(password)
         .digest("hex");
 
-      passwordValid = sha256Password === customer.password_hash;
+      passwordValid =
+        sha256Password === customer.password_hash;
     }
 
     if (!passwordValid) {
@@ -71,7 +87,9 @@ module.exports = async function handler(req, res) {
     const sessionToken = crypto.randomBytes(32).toString("hex");
 
     // Session expires in 7 days
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const expiresAt = new Date(
+      Date.now() + 7 * 24 * 60 * 60 * 1000
+    );
 
     // Save session in database
     await sql`
@@ -90,7 +108,7 @@ module.exports = async function handler(req, res) {
     // Set HttpOnly session cookie
     res.setHeader(
       "Set-Cookie",
-      `learningroom_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`,
+      `learningroom_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`
     );
 
     return res.status(200).json({
@@ -112,3 +130,4 @@ module.exports = async function handler(req, res) {
     });
   }
 };
+
