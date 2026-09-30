@@ -22,14 +22,15 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      connection: result[0],
+      connection: result[0]
     });
+
   } catch (error) {
-    console.error("DB test error:", error);
+    console.error("DB check error:", error);
 
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: error.message
     });
   }
 };
