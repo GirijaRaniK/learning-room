@@ -130,58 +130,73 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  async function addProductToCart(product, button) {
-    if (!product || !product.id) {
-      console.error("Invalid product information.");
+async function addProductToCart(product, button) {
+  if (!product || !product.id) {
+    console.error("Invalid product information.");
+    return;
+  }
+
+  if (Number(product.stock) <= 0) {
+    alert("Sorry, this product is currently out of stock.");
+    return;
+  }
+
+  try {
+    button.disabled = true;
+    button.textContent = "Adding...";
+
+    const response = await fetch("/api/cart", {
+      method: "POST",
+
+      credentials: "include",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        product_id: product.id,
+        quantity: 1,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 401) {
+      window.location.href = "login.html";
       return;
     }
 
-    if (Number(product.stock) <= 0) {
-      alert("Sorry, this product is currently out of stock.");
-      return;
-    }
-
-    try {
-      button.disabled = true;
-      button.textContent = "Adding...";
-
-      const response = await fetch("/api/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customer_id: customerId,
-          product_id: product.id,
-          quantity: 1,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || "Unable to add product to cart.");
-      }
-
-      button.textContent = "✓ Added to Cart";
-
-      setTimeout(() => {
-        button.textContent = "Add to Cart";
-        button.disabled = false;
-      }, 1400);
-
-      console.log("Product added to database cart:", data);
-    } catch (error) {
-      console.error("Add to cart error:", error);
-
-      alert(
-        error.message || "Unable to add product to cart. Please try again.",
+    if (!response.ok || !data.success) {
+      throw new Error(
+        data.message || "Unable to add product to cart."
       );
+    }
 
+    /* Update navbar cart count immediately */
+    window.dispatchEvent(new Event("cartUpdated"));
+
+    button.textContent = "✓ Added to Cart";
+
+    setTimeout(() => {
       button.textContent = "Add to Cart";
       button.disabled = false;
-    }
+    }, 1400);
+
+    console.log("Product added to database cart:", data);
+
+  } catch (error) {
+    console.error("Add to cart error:", error);
+
+    alert(
+      error.message ||
+        "Unable to add product to cart. Please try again."
+    );
+
+    button.textContent = "Add to Cart";
+    button.disabled = false;
   }
+}
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
