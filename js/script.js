@@ -246,3 +246,10 @@ async function updateCartCount() {
     cartCountElement.textContent = "0";
   }
 }
+/* =========================================================
+   REFRESH CART COUNT EVENT
+========================================================= */
+
+window.addEventListener("cartUpdated", function () {
+  updateCartCount();
+});

@@ -251,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       await loadCart();
+      window.dispatchEvent(new Event("cartUpdated"));
     } catch (error) {
       console.error("Quantity update error:", error);
 
@@ -292,6 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       await loadCart();
+      window.dispatchEvent(new Event("cartUpdated"));
     } catch (error) {
       console.error("Remove item error:", error);
 
@@ -341,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       await loadCart();
+      window.dispatchEvent(new Event("cartUpdated"));
     } catch (error) {
       console.error("Clear cart error:", error);
 
