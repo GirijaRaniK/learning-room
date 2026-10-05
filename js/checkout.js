@@ -204,7 +204,31 @@ payNowBtn?.addEventListener("click", async () => {
       }),
     });
 
-    const paymentData = await paymentResponse.json();
+   const paymentText = await paymentResponse.text();
+
+    console.log("Create Payment HTTP Status:", paymentResponse.status);
+    console.log("Create Payment Raw Response:", paymentText);
+
+    let paymentData;
+
+    try {
+    paymentData = JSON.parse(paymentText);
+    } catch (parseError) {
+    throw new Error(
+        `Payment server returned an invalid response. HTTP ${paymentResponse.status}: ${paymentText}`
+    );
+    }
+
+    if (paymentResponse.status === 401) {
+    window.location.href = "login.html";
+    return;
+    }
+
+    if (!paymentResponse.ok || !paymentData.success) {
+    throw new Error(
+        paymentData.message || "Unable to start payment."
+    );
+    }
 
     if (paymentResponse.status === 401) {
       window.location.href = "login.html";
