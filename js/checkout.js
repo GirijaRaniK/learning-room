@@ -155,6 +155,93 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // ---------------------------------------------------------
+// Proceed to Razorpay payment
+// ---------------------------------------------------------
+
+payNowBtn?.addEventListener("click", async () => {
+  try {
+    payNowBtn.disabled = true;
+    payNowBtn.textContent = "Preparing Payment...";
+
+    const cartResponse = await fetch("/api/cart", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const cartData = await cartResponse.json();
+
+    if (cartResponse.status === 401) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    if (
+      !cartResponse.ok ||
+      !cartData.success ||
+      !cartData.cart ||
+      !Array.isArray(cartData.cart.items) ||
+      cartData.cart.items.length === 0
+    ) {
+      throw new Error("Your cart is empty.");
+    }
+
+    const items = cartData.cart.items.map((item) => ({
+      id: Number(item.product_id),
+      quantity: Number(item.quantity),
+    }));
+
+    const paymentResponse = await fetch("/api/create-payment", {
+      method: "POST",
+
+      credentials: "include",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        items: items,
+      }),
+    });
+
+    const paymentData = await paymentResponse.json();
+
+    if (paymentResponse.status === 401) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    if (!paymentResponse.ok || !paymentData.success) {
+      throw new Error(
+        paymentData.message || "Unable to start payment."
+      );
+    }
+
+    console.log("Razorpay order created:", paymentData);
+
+    alert(
+      `Razorpay order created successfully.\n\nOrder ID: ${paymentData.order_id}\nAmount: ₹${(Number(paymentData.amount) / 100).toFixed(2)}`
+    );
+
+    payNowBtn.disabled = false;
+    payNowBtn.textContent = "Proceed to Payment";
+
+  } catch (error) {
+    console.error("Payment initialization error:", error);
+
+    alert(
+      error.message ||
+        "Unable to start payment. Please try again."
+    );
+
+    payNowBtn.disabled = false;
+    payNowBtn.textContent = "Proceed to Payment";
+  }
+});
+
+
+
+  // ---------------------------------------------------------
   // Initial load
   // ---------------------------------------------------------
 
