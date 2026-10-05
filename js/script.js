@@ -203,29 +203,46 @@ async function handleLogout(event) {
   }
 }
 /* =========================================================
-   CART COUNT
+   CART COUNT - DATABASE / SESSION BASED
 ========================================================= */
 
-function updateCartCount() {
+async function updateCartCount() {
   const cartCountElement = document.getElementById("cartCount");
 
   if (!cartCountElement) {
     return;
   }
 
-  let cart = [];
-
   try {
-    cart = JSON.parse(localStorage.getItem("learningroom_cart")) || [];
+    const response = await fetch("/api/cart", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      cartCountElement.textContent = "0";
+      return;
+    }
+
+    const data = await response.json();
+
+    if (!data.success || !data.cart) {
+      cartCountElement.textContent = "0";
+      return;
+    }
+
+    let totalQuantity = 0;
+
+    if (Array.isArray(data.cart.items)) {
+      data.cart.items.forEach(function (item) {
+        totalQuantity += Number(item.quantity) || 0;
+      });
+    }
+
+    cartCountElement.textContent = totalQuantity;
   } catch (error) {
-    cart = [];
+    console.error("Cart count error:", error);
+
+    cartCountElement.textContent = "0";
   }
-
-  let totalQuantity = 0;
-
-  cart.forEach(function (item) {
-    totalQuantity += Number(item.quantity) || 0;
-  });
-
-  cartCountElement.textContent = totalQuantity;
 }
