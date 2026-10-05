@@ -323,7 +323,7 @@ payNowBtn?.addEventListener("click", async () => {
             );
 
             // Go to dashboard after successful payment
-            window.location.href = "dashboard.html";
+            window.location.href = "orders.html";
 
         } catch (error) {
             console.error(
