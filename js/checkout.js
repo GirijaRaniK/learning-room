@@ -243,25 +243,62 @@ payNowBtn?.addEventListener("click", async () => {
 
     console.log("Razorpay order created:", paymentData);
 
-    alert(
-      `Razorpay order created successfully.\n\nOrder ID: ${paymentData.order_id}\nAmount: ₹${(Number(paymentData.amount) / 100).toFixed(2)}`
-    );
+    const options = {
+        key: paymentData.key_id,
+        amount: paymentData.amount,
+        currency: paymentData.currency,
+        name: "LearningRoom",
+        description: "LearningRoom Learning Products",
+        order_id: paymentData.order_id,
 
-    payNowBtn.disabled = false;
-    payNowBtn.textContent = "Proceed to Payment";
+        prefill: {
+            name: paymentData.customer?.name || "",
+            email: paymentData.customer?.email || "",
+            contact: paymentData.customer?.phone || "",
+        },
 
-  } catch (error) {
-    console.error("Payment initialization error:", error);
+        theme: {
+            color: "#2563eb",
+        },
 
-    alert(
-      error.message ||
-        "Unable to start payment. Please try again."
-    );
+        handler: function (response) {
+            console.log("Razorpay payment response:", response);
 
-    payNowBtn.disabled = false;
-    payNowBtn.textContent = "Proceed to Payment";
-  }
-});
+            alert(
+            "Payment completed.\n\nPayment ID: " +
+                response.razorpay_payment_id
+            );
+        },
+
+        modal: {
+            ondismiss: function () {
+            console.log("Razorpay checkout closed.");
+
+            payNowBtn.disabled = false;
+            payNowBtn.textContent = "Proceed to Payment";
+            },
+        },
+        };
+
+        const razorpay = new Razorpay(options);
+
+        razorpay.open();
+
+            payNowBtn.disabled = false;
+            payNowBtn.textContent = "Proceed to Payment";
+
+        } catch (error) {
+            console.error("Payment initialization error:", error);
+
+            alert(
+            error.message ||
+                "Unable to start payment. Please try again."
+            );
+
+            payNowBtn.disabled = false;
+            payNowBtn.textContent = "Proceed to Payment";
+        }
+    });
 
 
 

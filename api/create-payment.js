@@ -242,11 +242,9 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-
+      key_id: process.env.RAZORPAY_KEY_ID,
       order_id: razorpayOrder.id,
-
       amount: razorpayOrder.amount,
-
       currency: razorpayOrder.currency,
 
       customer: {
