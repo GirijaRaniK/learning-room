@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>My Orders | LearningRoom</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/orders.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+
+    <section class="orders-hero">
+      <div class="container">
+        <h1>My Orders</h1>
+        <p>View your LearningRoom purchases and payment details.</p>
+      </div>
+    </section>
+
+    <section class="orders-section">
+      <div class="container">
+
+        <div id="ordersLoading" class="orders-message">
+          Loading your orders...
+        </div>
+
+        <div
+          id="ordersEmpty"
+          class="orders-message"
+          style="display: none;"
+        >
+          <h2>No orders yet</h2>
+          <p>
+            You haven't purchased any LearningRoom products yet.
+          </p>
+
+          <a href="products.html" class="orders-shop-btn">
+            Browse Products
+          </a>
+        </div>
+
+        <div
+          id="ordersList"
+          class="orders-list"
+          style="display: none;"
+        ></div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="js/script.js"></script>
+  <script src="js/orders.js"></script>
+
+</body>
+</html>

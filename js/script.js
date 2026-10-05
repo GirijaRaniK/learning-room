@@ -114,9 +114,13 @@ function checkNavbarSession() {
 
   const logoutLink = document.getElementById("logoutNavLink");
 
+  const ordersLink = document.getElementById("ordersNavLink");
+
   const mobileDashboardLink = document.getElementById(
     "mobileDashboardNavLink"
   );
+
+  const mobileOrdersLink = document.getElementById("mobileOrdersNavLink");
 
   const mobileLogoutLink = document.getElementById(
     "mobileLogoutNavLink"
@@ -143,12 +147,20 @@ function checkNavbarSession() {
           dashboardLink.style.display = "inline-block";
         }
 
+        if (ordersLink) {
+          ordersLink.style.display = "inline-block";
+        }
+
         if (logoutLink) {
           logoutLink.style.display = "inline-block";
         }
 
         if (mobileDashboardLink) {
           mobileDashboardLink.style.display = "block";
+        }
+
+        if (mobileOrdersLink) {
+          mobileOrdersLink.style.display = "block";
         }
 
         if (mobileLogoutLink) {
