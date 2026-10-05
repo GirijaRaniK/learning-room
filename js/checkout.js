@@ -261,13 +261,84 @@ payNowBtn?.addEventListener("click", async () => {
             color: "#2563eb",
         },
 
-        handler: function (response) {
-            console.log("Razorpay payment response:", response);
+        handler: async function (response) {
+        console.log("Razorpay payment response:", response);
+
+        try {
+            payNowBtn.disabled = true;
+            payNowBtn.textContent = "Verifying Payment...";
+
+            const verifyResponse = await fetch("/api/verify-payment", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+            }),
+            });
+
+            const verifyText = await verifyResponse.text();
+
+            console.log(
+            "Payment verification HTTP status:",
+            verifyResponse.status
+            );
+
+            console.log(
+            "Payment verification response:",
+            verifyText
+            );
+
+            let verifyData;
+
+            try {
+            verifyData = JSON.parse(verifyText);
+            } catch (parseError) {
+            throw new Error(
+                `Invalid verification response. HTTP ${verifyResponse.status}`
+            );
+            }
+
+            if (!verifyResponse.ok || !verifyData.success) {
+            throw new Error(
+                verifyData.message ||
+                "Payment verification failed."
+            );
+            }
+
+            // Update navbar cart count
+            window.dispatchEvent(new Event("cartUpdated"));
 
             alert(
-            "Payment completed.\n\nPayment ID: " +
-                response.razorpay_payment_id
+            "Payment successful!\n\n" +
+            "Order ID: " +
+            verifyData.order_id +
+            "\n" +
+            "Payment ID: " +
+            verifyData.payment_id
             );
+
+            // Go to dashboard after successful payment
+            window.location.href = "dashboard.html";
+
+        } catch (error) {
+            console.error(
+            "Payment verification error:",
+            error
+            );
+
+            alert(
+            error.message ||
+                "Payment was completed, but verification failed. Please contact support."
+            );
+
+            payNowBtn.disabled = false;
+            payNowBtn.textContent = "Proceed to Payment";
+        }
         },
 
         modal: {
