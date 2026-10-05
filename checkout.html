@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Checkout | LearningRoom</title>
+
+  <meta
+    name="description"
+    content="Complete your LearningRoom order securely."
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+
+<body>
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <div id="navbar"></div>
+
+
+  <!-- =====================================================
+       CHECKOUT
+  ====================================================== -->
+
+  <main class="checkout-page">
+
+    <section class="checkout-hero">
+
+      <div class="checkout-hero-content">
+
+        <span class="checkout-eyebrow">
+          LearningRoom
+        </span>
+
+        <h1>Checkout</h1>
+
+        <p>
+          Review your learning products and continue securely
+          to payment.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="checkout-section">
+
+      <div class="checkout-container">
+
+
+        <!-- =================================================
+             LEFT - ORDER SUMMARY
+        ================================================== -->
+
+        <div class="checkout-card">
+
+          <div class="checkout-card-header">
+
+            <div>
+              <span class="section-label">
+                Your Order
+              </span>
+
+              <h2>Order Summary</h2>
+            </div>
+
+            <span id="checkoutItemCount">
+              0 items
+            </span>
+
+          </div>
+
+
+          <div id="checkoutItems" class="checkout-items">
+
+            <div class="checkout-loading">
+              Loading your cart...
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT - PAYMENT SUMMARY
+        ================================================== -->
+
+        <aside class="checkout-card checkout-summary">
+
+          <div class="checkout-card-header">
+
+            <div>
+              <span class="section-label">
+                Total
+              </span>
+
+              <h2>Payment Summary</h2>
+            </div>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>Subtotal</span>
+
+            <strong id="checkoutSubtotal">
+              ₹0
+            </strong>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>Delivery</span>
+
+            <strong id="checkoutDelivery">
+              FREE
+            </strong>
+
+          </div>
+
+
+          <div class="summary-divider"></div>
+
+
+          <div class="summary-total">
+
+            <span>Total</span>
+
+            <strong id="checkoutTotal">
+              ₹0
+            </strong>
+
+          </div>
+
+
+          <button
+            type="button"
+            id="payNowBtn"
+            class="checkout-pay-btn"
+            disabled
+          >
+            Proceed to Payment
+          </button>
+
+
+          <a
+            href="cart.html"
+            class="back-cart-link"
+          >
+            ← Back to Cart
+          </a>
+
+
+          <p class="secure-payment-note">
+            🔒 Secure payment powered by Razorpay
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <div id="footer"></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="js/script.js"></script>
+  <script src="js/checkout.js"></script>
+
+</body>
+</html>
