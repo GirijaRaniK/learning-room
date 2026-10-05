@@ -1,22 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const customerId = 1;
-
   const cartItemsContainer = document.getElementById("cartItems");
-
   const cartContent = document.getElementById("cartContent");
-
   const emptyCart = document.getElementById("emptyCart");
-
   const cartItemCount = document.getElementById("cartItemCount");
-
   const cartSubtotal = document.getElementById("cartSubtotal");
-
   const cartDelivery = document.getElementById("cartDelivery");
-
   const cartTotal = document.getElementById("cartTotal");
-
   const clearCartBtn = document.getElementById("clearCartBtn");
-
   const checkoutBtn = document.getElementById("checkoutBtn");
 
   // ---------------------------------------------------------
@@ -25,16 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadCart() {
     try {
-      const response = await fetch(`/api/cart?customer_id=${customerId}`);
-
-      if (!response.ok) {
-        throw new Error(`Cart API failed: ${response.status}`);
-      }
+      const response = await fetch("/api/cart", {
+        method: "GET",
+        credentials: "include",
+      });
 
       const data = await response.json();
 
-      if (!data.success || !data.cart) {
-        throw new Error(data.message || "Unable to load cart.");
+      if (response.status === 401) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      if (!response.ok || !data.success || !data.cart) {
+        throw new Error(data.message || "Unable to load your cart.");
       }
 
       renderCart(data.cart);
@@ -45,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItemsContainer.innerHTML = `
           <div class="cart-error">
             <h3>Unable to load your cart</h3>
-            <p>Please refresh the page and try again.</p>
+            <p>${error.message || "Please refresh the page and try again."}</p>
           </div>
         `;
       }
@@ -63,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const items = cart.items || [];
 
-    // Empty cart
     if (items.length === 0) {
       if (cartContent) {
         cartContent.style.display = "none";
@@ -76,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Cart has products
     if (cartContent) {
       cartContent.style.display = "grid";
     }
@@ -102,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
           />
         </div>
 
-
         <div class="cart-item-details">
 
           <span class="cart-item-category">
@@ -114,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="cart-item-price">
             ₹${Number(item.price).toFixed(0)} each
           </p>
-
 
           <div class="cart-item-actions">
 
@@ -144,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             </div>
 
-
             <button
               type="button"
               class="remove-item-btn"
@@ -157,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
 
-
         <div class="cart-item-total">
           <strong>
             ₹${itemTotal.toFixed(0)}
@@ -168,14 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItemsContainer.appendChild(cartItem);
     });
 
-    // Update summary
-
     if (cartItemCount) {
       cartItemCount.textContent = cart.item_count || 0;
     }
 
     if (cartSubtotal) {
-      cartSubtotal.textContent = `₹${Number(cart.subtotal).toFixed(0)}`;
+      cartSubtotal.textContent =
+        `₹${Number(cart.subtotal).toFixed(0)}`;
     }
 
     if (cartDelivery) {
@@ -186,7 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (cartTotal) {
-      cartTotal.textContent = `₹${Number(cart.total).toFixed(0)}`;
+      cartTotal.textContent =
+        `₹${Number(cart.total).toFixed(0)}`;
     }
 
     attachCartEvents();
@@ -200,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".increase-btn").forEach((button) => {
       button.addEventListener("click", async () => {
         const productId = Number(button.dataset.productId);
-
         const currentQuantity = Number(button.dataset.quantity);
 
         await updateQuantity(productId, currentQuantity + 1);
@@ -210,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".decrease-btn").forEach((button) => {
       button.addEventListener("click", async () => {
         const productId = Number(button.dataset.productId);
-
         const currentQuantity = Number(button.dataset.quantity);
 
         if (currentQuantity <= 1) {
@@ -239,12 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/api/cart", {
         method: "PUT",
 
+        credentials: "include",
+
         headers: {
           "Content-Type": "application/json",
         },
 
         body: JSON.stringify({
-          customer_id: customerId,
           product_id: productId,
           quantity: quantity,
         }),
@@ -252,8 +239,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
 
+      if (response.status === 401) {
+        window.location.href = "login.html";
+        return;
+      }
+
       if (!response.ok || !data.success) {
-        throw new Error(data.message || "Unable to update quantity.");
+        throw new Error(
+          data.message || "Unable to update quantity.",
+        );
       }
 
       await loadCart();
@@ -270,23 +264,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function removeItem(productId) {
     try {
-      const response = await fetch(`/api/cart?customer_id=${customerId}`, {
+      const response = await fetch("/api/cart", {
         method: "DELETE",
+
+        credentials: "include",
 
         headers: {
           "Content-Type": "application/json",
         },
 
         body: JSON.stringify({
-          customer_id: customerId,
           product_id: productId,
         }),
       });
 
       const data = await response.json();
 
+      if (response.status === 401) {
+        window.location.href = "login.html";
+        return;
+      }
+
       if (!response.ok || !data.success) {
-        throw new Error(data.message || "Unable to remove product.");
+        throw new Error(
+          data.message || "Unable to remove product.",
+        );
       }
 
       await loadCart();
@@ -302,30 +304,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------------------------------------------------------
 
   clearCartBtn?.addEventListener("click", async () => {
-    const confirmed = confirm("Are you sure you want to clear your cart?");
+    const confirmed = confirm(
+      "Are you sure you want to clear your cart?",
+    );
 
     if (!confirmed) {
       return;
     }
 
     try {
-      const response = await fetch(`/api/cart?customer_id=${customerId}`, {
+      const response = await fetch("/api/cart", {
         method: "DELETE",
+
+        credentials: "include",
 
         headers: {
           "Content-Type": "application/json",
         },
 
         body: JSON.stringify({
-          customer_id: customerId,
           clear: true,
         }),
       });
 
       const data = await response.json();
 
+      if (response.status === 401) {
+        window.location.href = "login.html";
+        return;
+      }
+
       if (!response.ok || !data.success) {
-        throw new Error(data.message || "Unable to clear cart.");
+        throw new Error(
+          data.message || "Unable to clear cart.",
+        );
       }
 
       await loadCart();
@@ -341,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------------------------------------------------------
 
   checkoutBtn?.addEventListener("click", () => {
-    alert("Checkout will be connected in the next step.");
+    window.location.href = "checkout.html";
   });
 
   // ---------------------------------------------------------

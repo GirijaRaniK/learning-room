@@ -2,40 +2,63 @@ const sql = require("./db");
 
 module.exports = async function handler(req, res) {
   try {
-    /*
-     * For now, customer_id is supplied by the frontend.
-     * Later we will replace this with proper login/session authentication.
-     */
-    const customerId = Number(req.query.customer_id || req.body?.customer_id);
+    // =========================================================
+    // GET CUSTOMER FROM LOGIN SESSION
+    // =========================================================
 
-    if (!customerId || !Number.isInteger(customerId)) {
-      return res.status(400).json({
+    const cookieHeader = req.headers.cookie || "";
+
+    const cookies = {};
+
+    cookieHeader.split(";").forEach((cookie) => {
+      const [name, ...valueParts] = cookie.trim().split("=");
+
+      if (name) {
+        cookies[name] = valueParts.join("=");
+      }
+    });
+
+    const sessionToken = cookies.learningroom_session;
+
+    if (!sessionToken) {
+      return res.status(401).json({
         success: false,
-        message: "Valid customer_id is required.",
+        message: "Please login before using the cart.",
       });
     }
 
-    // ---------------------------------------------------------
+    // =========================================================
+    // VALIDATE SESSION
+    // =========================================================
+
+    const sessions = await sql`
+      SELECT
+        s.customer_id,
+        c.name,
+        c.email,
+        c.phone
+      FROM sessions s
+      INNER JOIN customers c
+        ON c.id = s.customer_id
+      WHERE s.session_token = ${sessionToken}
+        AND s.expires_at > NOW()
+      LIMIT 1
+    `;
+
+    if (sessions.length === 0) {
+      return res.status(401).json({
+        success: false,
+        message: "Your login session has expired. Please login again.",
+      });
+    }
+
+    const customerId = sessions[0].customer_id;
+
+    // =========================================================
     // GET CART
-    // ---------------------------------------------------------
+    // =========================================================
+
     if (req.method === "GET") {
-      const customers = await sql`
-        SELECT id, name, email
-        FROM customers
-        WHERE id = ${customerId}
-        LIMIT 1
-      `;
-
-      if (customers.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "Customer not found.",
-        });
-      }
-
-      /*
-       * Get existing cart.
-       */
       let carts = await sql`
         SELECT id
         FROM cart
@@ -43,9 +66,6 @@ module.exports = async function handler(req, res) {
         LIMIT 1
       `;
 
-      /*
-       * Create cart if customer does not have one.
-       */
       if (carts.length === 0) {
         carts = await sql`
           INSERT INTO cart (customer_id)
@@ -56,9 +76,6 @@ module.exports = async function handler(req, res) {
 
       const cartId = carts[0].id;
 
-      /*
-       * Get cart items along with product information.
-       */
       const items = await sql`
         SELECT
           ci.id,
@@ -100,9 +117,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // ---------------------------------------------------------
+    // =========================================================
     // POST - ADD PRODUCT TO CART
-    // ---------------------------------------------------------
+    // =========================================================
+
     if (req.method === "POST") {
       const { product_id, quantity = 1 } = req.body || {};
 
@@ -110,8 +128,8 @@ module.exports = async function handler(req, res) {
       const requestedQuantity = Number(quantity);
 
       if (
-        !productId ||
         !Number.isInteger(productId) ||
+        productId <= 0 ||
         !Number.isInteger(requestedQuantity) ||
         requestedQuantity <= 0
       ) {
@@ -121,26 +139,6 @@ module.exports = async function handler(req, res) {
         });
       }
 
-      /*
-       * Check customer.
-       */
-      const customers = await sql`
-        SELECT id
-        FROM customers
-        WHERE id = ${customerId}
-        LIMIT 1
-      `;
-
-      if (customers.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "Customer not found.",
-        });
-      }
-
-      /*
-       * Check product.
-       */
       const products = await sql`
         SELECT
           id,
@@ -177,9 +175,6 @@ module.exports = async function handler(req, res) {
         });
       }
 
-      /*
-       * Get or create customer's cart.
-       */
       let carts = await sql`
         SELECT id
         FROM cart
@@ -197,9 +192,6 @@ module.exports = async function handler(req, res) {
 
       const cartId = carts[0].id;
 
-      /*
-       * Check whether product already exists in cart.
-       */
       const existingItems = await sql`
         SELECT id, quantity
         FROM cart_items
@@ -240,14 +232,12 @@ module.exports = async function handler(req, res) {
         }
 
         const newItems = await sql`
-          INSERT INTO cart_items
-          (
+          INSERT INTO cart_items (
             cart_id,
             product_id,
             quantity
           )
-          VALUES
-          (
+          VALUES (
             ${cartId},
             ${productId},
             ${requestedQuantity}
@@ -271,9 +261,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // ---------------------------------------------------------
+    // =========================================================
     // PUT - UPDATE QUANTITY
-    // ---------------------------------------------------------
+    // =========================================================
+
     if (req.method === "PUT") {
       const { product_id, quantity } = req.body || {};
 
@@ -281,8 +272,8 @@ module.exports = async function handler(req, res) {
       const newQuantity = Number(quantity);
 
       if (
-        !productId ||
         !Number.isInteger(productId) ||
+        productId <= 0 ||
         !Number.isInteger(newQuantity) ||
         newQuantity <= 0
       ) {
@@ -359,9 +350,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // ---------------------------------------------------------
+    // =========================================================
     // DELETE
-    // ---------------------------------------------------------
+    // =========================================================
+
     if (req.method === "DELETE") {
       const { product_id, clear } = req.body || {};
 
@@ -381,9 +373,7 @@ module.exports = async function handler(req, res) {
 
       const cartId = carts[0].id;
 
-      /*
-       * Clear entire cart.
-       */
+      // Clear entire cart
       if (clear === true) {
         await sql`
           DELETE FROM cart_items
@@ -402,12 +392,10 @@ module.exports = async function handler(req, res) {
         });
       }
 
-      /*
-       * Remove one product.
-       */
+      // Remove one product
       const productId = Number(product_id);
 
-      if (!productId || !Number.isInteger(productId)) {
+      if (!Number.isInteger(productId) || productId <= 0) {
         return res.status(400).json({
           success: false,
           message: "Valid product_id is required.",
